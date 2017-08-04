@@ -49,7 +49,7 @@ A set of **1136** loci were found to be present in all the analyzed complete gen
 
 ![Genome quality testing of complete genomes](http://i.imgur.com/Zh6GRk9.png)
 [larger image fig 1](http://i.imgur.com/Zh6GRk9.png)
-
+[See interactive plot online](http://im.fm.ul.pt/chewBBACA/GenomeQual/GenomeQualityPlot_complete_genomes.html)
 
 ## Allele call for 682 Streptococci agalactiae assemblies 
 
@@ -85,6 +85,7 @@ or most of the genomes (90%<x<100%), the number of loci present in all genomes i
 
 ![Genome quality testing of all genomes](http://i.imgur.com/j4u22ZE.png)
 [larger image here fig 2](http://i.imgur.com/j4u22ZE.png)
+[See interactive plot online](http://im.fm.ul.pt/chewBBACA/GenomeQual/GenomeQualityPlot_all_genomes.html)
 
 We selected the results at the threshold of 25 for further analysis as it presented a significant
  loci presence in 95% of genomes change (+50 loci) and an acceptable loci 
@@ -122,6 +123,8 @@ contigs over 10k bp
 ![Genome Analysis 2](http://i.imgur.com/fabxi0Z.png)
 [larger image](http://i.imgur.com/fabxi0Z.png)
 
+[See interactive plot online](http://im.fm.ul.pt/chewBBACA/GenomeQual/AssemblyStatsStack.html)
+
 At first sight, most of the removed genomes (57) were located on the lower number of 
 bp/N50 (fig.3) and the higher number of contigs (fig.4)
 
@@ -133,3 +136,8 @@ The remaining 5 genomes were individually checked :
 4. **GCA_000289455.1** [here](https://www.ncbi.nlm.nih.gov/assembly/GCA_000289455.1)- No ST found...
 5. **GCA_000288835.1** [here](https://www.ncbi.nlm.nih.gov/assembly/GCA_000288835.1)- NCBI curated it out of RefSeq because it had many frameshifted proteins
 
+Schema Evaluator was run on the cgMLST schema :
+
+`chewBBACA.py SchemaEvaluator -i schema_seed/ -l rms/RmS.html -ta 11 --title "cgMLST schema GBS tutorial schema evaluator" --cpu 6`
+
+[See the schema evaluator page here](http://im.fm.ul.pt/chewBBACA/SchemaEval/rms/RmS.html)
