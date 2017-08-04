@@ -48,7 +48,7 @@ A set of **1136** loci were found to be present in all the analyzed complete gen
 `chewBBACA.py TestGenomeQuality -i alleleCallMatrix_cg.tsv -n 13 -t 200 -s 5`
 
 ![Genome quality testing of complete genomes](http://i.imgur.com/Zh6GRk9.png)
-[larger image fig 1](http://i.imgur.com/Zh6GRk9.png) or [See interactive plot online](http://im.fm.ul.pt/chewBBACA/GenomeQual/GenomeQualityPlot_complete_genomes.html)
+[larger image fig 1](http://i.imgur.com/Zh6GRk9.png) or [see interactive plot online](http://im.fm.ul.pt/chewBBACA/GenomeQual/GenomeQualityPlot_complete_genomes.html)
 
 ## Allele call for 682 Streptococci agalactiae assemblies 
 
@@ -83,7 +83,7 @@ or most of the genomes (90%<x<100%), the number of loci present in all genomes i
 `chewBBACA.py TestGenomeQuality -i results_alleles.tsv -n 13 -t 300 -s 5`
 
 ![Genome quality testing of all genomes](http://i.imgur.com/j4u22ZE.png)
-[larger image here fig 2](http://i.imgur.com/j4u22ZE.png) or [See interactive plot online](http://im.fm.ul.pt/chewBBACA/GenomeQual/GenomeQualityPlot_all_genomes.html)
+[larger image here fig 2](http://i.imgur.com/j4u22ZE.png) or [see interactive plot online](http://im.fm.ul.pt/chewBBACA/GenomeQual/GenomeQualityPlot_all_genomes.html)
 
 We selected the results at the threshold of 25 for further analysis as it presented a significant
  loci presence in 95% of genomes change (+50 loci) and an acceptable loci 
