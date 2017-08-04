@@ -134,6 +134,8 @@ The remaining 5 genomes were individually checked :
 4. **GCA_000289455.1** [here](https://www.ncbi.nlm.nih.gov/assembly/GCA_000289455.1)- No ST found...
 5. **GCA_000288835.1** [here](https://www.ncbi.nlm.nih.gov/assembly/GCA_000288835.1)- NCBI curated it out of RefSeq because it had many frameshifted proteins
 
+
+## Schema Evaluation 
 Schema Evaluator was run on the cgMLST schema :
 
 `chewBBACA.py SchemaEvaluator -i schema_seed/ -l rms/RmS.html -ta 11 --title "cgMLST schema GBS tutorial schema evaluator" --cpu 6`
