@@ -6,7 +6,7 @@ All information about NCBI genomes used in this example is on the [.tsv file](ht
  inside the `genomes` folder. 
 
 The setup is done by the following steps   
-1. do a `git clone https://github.com/mickaelsilva/chewBBACA_tutorial.git` to download the entire repository in the folder of your choice 
+1. do a `git clone https://github.com/B-UMMI/chewBBACA_tutorial` to download the entire repository in the folder of your choice 
 2. `cd chewBBACA_tutorial/` to enter the dir
 3. `unzip genomes/complete_genomes.zip` to extract all the complete genomes files. a directory named complete_genomes will be available at `chewBBACA tutorial/`
 
