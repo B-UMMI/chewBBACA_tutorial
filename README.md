@@ -2,7 +2,7 @@
 ## Objective
 The objective of this tutorial is to illustrate the complete workflow of a chewBBACA pipeline for creating a wgMLST and a cgMLST schema for a colection of 714 _Streptococcus agalactiae_ genomes (32 complete genomes and 682 assemblies deposited on the Sequence Read Archive) by providing step-by-step instructions and displaying the obtained outputs.
 
-All information about NCBI genomes used in this example is on the [.tsv file](https://github.com/mickaelsilva/chewBBACA_tutorial/blob/master/genomes/NCBI_genomes_proks.Sagalactiae_allGenomes.2016_08_03.tsv).
+All information about NCBI genomes used in this example is on the [.tsv file](https://github.com/B-UMMI/chewBBACA_tutorial/tree/master/genomes/NCBI_genomes_proks.Sagalactiae_allGenomes.2016_08_03.tsv).
  inside the `genomes` folder. 
 
 The setup is done by the following steps   
