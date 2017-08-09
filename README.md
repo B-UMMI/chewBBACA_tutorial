@@ -35,7 +35,7 @@ The allele call used the default BSR threshold of 0.6 (more information on the t
 ## Paralog detection 
 
 The next step on the analysis is to determine if some of the loci can be considered paralogous, based on the result of the wgMLST allele calling. The Allele call returns a list of Paralogous genes in the `RepeatedLoci.txt` file that can be found on the `results_cg` folder. 
-The output example is present in `chewBBACA_tutorial/results_cg/results_20170809T100937/`. In `chewBBACA_tutorial/results_cg/results_20170809T100937/RepeatedLoci.txt´, a set of 24 loci were identified as possible paralogs 
+The output example is present in `chewBBACA_tutorial/results_cg/results_20170809T100937/`. In `chewBBACA_tutorial/results_cg/results_20170809T100937/RepeatedLoci.txt`, a set of 24 loci were identified as possible paralogs 
 that were removed from further analysis. For a more detailed description see the [Alelle Calling](https://github.com/B-UMMI/chewBBACA/wiki/2.-Allele-Calling) entry on the wiki. 
 
 
@@ -48,12 +48,12 @@ A set of **1133** loci were found to be present in all the analyzed complete gen
 ![Genome quality testing of complete genomes](http://i.imgur.com/Zh6GRk9.png)
 [larger image fig 1](http://i.imgur.com/Zh6GRk9.png) or [see interactive plot online](http://im.fm.ul.pt/chewBBACA/GenomeQual/GenomeQualityPlot_complete_genomes.html)
 
-For further analysis only the **1264** loci that represent the cgMLST schema will be used. The list can be retrieved from the `Genes_95%.txt` that TestGenomeQuality creates. 
+For further analysis only the **1264** loci that represent the cgMLST schema will be used. The list can be retrieved from the `analysis_cg/Genes_95%.txt` that TestGenomeQuality creates. 
 There you can find the list of genes present in 95% of the strains per threshold, in this case we will use any from 60 to 195. You can see the list file with **1264** loci at `analysis_cg/listgenes_core.txt` and for future use you should add for each loci the full path for each loci fasta file.
 
 ## Allele call for 682 Streptococci agalactiae assemblies 
 
-683 assemblies of **Streptococcus Agalactiae** available on NCBI were downloaded ( 03-08-2016, downloadable zip file [here](https://drive.google.com/file/d/0Bw6VuoagsdhmaWEtR25fODlJTEk/view?usp=sharing)) 
+683 assemblies of _Streptococcus agalactiae_ available on NCBI were downloaded ( 03-08-2016, downloadable zip file [here](https://drive.google.com/file/d/0Bw6VuoagsdhmaWEtR25fODlJTEk/view?usp=sharing)) 
 and analyzed with [MLST](https://github.com/tseemann/mlst) in order to exclude possible mislabeled 
 samples as _Streptococcus agalactiae_. 
 
@@ -61,12 +61,12 @@ A total of **682 genomes** were downloaded being 2 (GCA_000323065.2_ASM32306v2 a
 Allele call was performed on the remaining 680 genomes using the **1264 loci** for schema validation. Paralog detection found no paralog loci.
 
 
-```chewBBACA.py Allelecall -i .genomes/ -g listgenes_core.txt -o results --cpu 6 -t "Streptococcus agalactiae"```
+```chewBBACA.py Allelecall -i .genomes/ -g listgenes_core.txt -o results --cpu 20 -t "Streptococcus agalactiae"```
 
 Run on a slurm based HPC with 20 cpu took approximately 41 mins to complete (an average of 3.5 secs per/for each genome) 
 
-Since our complete genomes allele call was performed with the wgMLST schema we need to remove the loci that constitute the auxiliary genome, in order to concatenate the matrixes with the same loci.  
-We select the alleleCallMatrix_cg.tsv file we previously created (already paralog free but still a wgMLST profile) and we extract only the locus present in 95% of the matrix.
+Since our previous complete genomes allele call was performed with the wgMLST schema we need to remove the loci that constitute the auxiliary genome, in order to be able to compare with the cgMLST allele call we performed for the 680 genomes.  
+We select the alleleCallMatrix_cg.tsv file we previously created (already paralog free but still a wgMLST profile) and we extracted only the locus present in 95% of the matrix.
 
 ```ExtractCgMLST -i alleleCallMatrix_cg.tsv -o cgMLST_completegenomes -p 0.95```
 
@@ -80,7 +80,7 @@ The new concatenated file was analyzed in order to assess the cgMLST allele qual
 [larger image here fig 2](http://i.imgur.com/j4u22ZE.png) or [see interactive plot online](http://im.fm.ul.pt/chewBBACA/GenomeQual/GenomeQualityPlot_all_genomes.html)
 
 While the presence of locus in 95% of genomes remains constant at around **1200** loci, considering all 
-or most of the genomes (90%<x<100%), the number of loci present in all genomes is very low (34) and presents some variation when some specific genomes are removed from the analysis.
+or most of the genomes (90%<x<100%) the number of loci present in all genomes is very low (34) and presents some variation when some specific genomes are removed from the analysis.
 
 We selected the results at the threshold of 25 for further analysis as it presented a significant
  loci presence in 95% of genomes change (+50 loci) and an acceptable loci 
@@ -118,7 +118,7 @@ The second plot representing the total number of contigs and the number of
 contigs over 10k bp
 
 ![Genome Analysis 2](http://i.imgur.com/fabxi0Z.png)
-[larger image](http://i.imgur.com/fabxi0Z.png)
+[larger image fig 4](http://i.imgur.com/fabxi0Z.png)
   
 [See interactive plot online](http://im.fm.ul.pt/chewBBACA/GenomeQual/AssemblyStatsStack.html)
 
