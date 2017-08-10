@@ -30,7 +30,7 @@ The next step was to perform allele calling with the created wgMLST schema for t
 
 [comment]: <> (JAC IS here in review)
 
-The allele call used the default BSR threshold of 0.6 (more information on the thresold [here](https://github.com/mickaelsilva/chewBBACA/wiki/AlleleCalling)) and took approximately 22 mins to complete (an average of 41 secs per/for each genome)  
+The allele call used the default BSR threshold of 0.6 (more information on the thresold [here](https://github.com/B-UMMI/chewBBACA/wiki/2.-Allele-Calling)) and took approximately 22 mins to complete (an average of 41 secs per/for each genome)  
 
 ## Paralog detection 
 
