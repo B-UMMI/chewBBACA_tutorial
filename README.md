@@ -53,7 +53,7 @@ There you can find the list of genes present in 95% of the strains per threshold
 
 ## Allele call for 682 Streptococci agalactiae assemblies 
 
-683 assemblies of _Streptococcus agalactiae_ available on NCBI were downloaded ( 03-08-2016, downloadable zip file [here](https://drive.google.com/file/d/0Bw6VuoagsdhmaWEtR25fODlJTEk/view?usp=sharing)) 
+682 assemblies of _Streptococcus agalactiae_ available on NCBI were downloaded ( 03-08-2016, downloadable zip file [here](https://drive.google.com/file/d/0Bw6VuoagsdhmaWEtR25fODlJTEk/view?usp=sharing)) 
 and analyzed with [MLST](https://github.com/tseemann/mlst) in order to exclude possible mislabeled 
 samples as _Streptococcus agalactiae_. 
 
