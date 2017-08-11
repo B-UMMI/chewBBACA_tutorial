@@ -83,7 +83,7 @@ While the presence of locus in 95% of genomes remains constant at around **1200*
 or most of the genomes (90%<x<100%) the number of loci present in all genomes is very low (34) and presents some variation when some specific genomes are removed from the analysis.
 
 We selected the results at the threshold of 25 for further analysis as it presented a significant
- loci presence in 95% of genomes change (+50 loci) and an acceptable loci 
+ loci presence change in 95% of genomes (+50 loci) and an acceptable loci 
  presence in all considered genomes (650 genomes/437 loci). 
  
 The genomes that were detected for each threshold are presented on the file `analysis_all/removedGenomes.txt` and a file `analysis_all/removedGenomes_25.txt` was created with only the genomes detected for the threshold at 25.
@@ -122,7 +122,7 @@ contigs over 10k bp
   
 [See interactive plot online](http://im.fm.ul.pt/chewBBACA/GenomeQual/AssemblyStatsStack.html)
 
-At first sight, most of the removed genomes (57) were located on the lower number of 
+At first sight, most of the removed genomes (57/62) were located on the lower number of 
 bp/N50 (fig.3) and the higher number of contigs (fig.4)
 
 The remaining 5 genomes were individually checked :
