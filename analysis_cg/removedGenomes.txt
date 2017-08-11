@@ -1,40 +1,41 @@
-using a threshold of 0 at iteration number 14 :	GCA_000427055.1_ILRI112_genomic.fna	GCA_000427075.1_ILRI005_genomic.fna	GCA_001592425.1_ASM159242v1_genomic.fna	GCA_001655175.1_ASM165517v1_genomic.fna	GCA_001266635.1_ASM126663v1_genomic.fna	GCA_001190825.1_ASM119082v1_genomic.fna	GCA_000730215.2_ASM73021v2_genomic.fna	GCA_001190885.1_ASM119088v1_genomic.fna	GCA_000012705.1_ASM1270v1_genomic.fna	GCA_000782855.1_ASM78285v1_genomic.fna	GCA_000302475.2_ASM30247v2_genomic.fna	GCA_000831105.1_ASM83110v1_genomic.fna	GCA_000689235.1_GBCO_p1_genomic.fna	GCA_000196055.1_ASM19605v1_genomic.fna	GCA_001552035.1_ASM155203v1_genomic.fna	GCA_000730255.1_ASM73025v1_genomic.fna	GCA_000831125.1_ASM83112v1_genomic.fna	GCA_001448985.1_ASM144898v1_genomic.fna	GCA_001190865.1_ASM119086v1_genomic.fna	GCA_000007265.1_ASM726v1_genomic.fna	GCA_000636115.1_ASM63611v1_genomic.fna	GCA_000831145.1_ASM83114v1_genomic.fna	GCA_001275545.2_ASM127554v2_genomic.fna
-using a threshold of 5 at iteration number 14 :	GCA_000427055.1_ILRI112_genomic.fna	GCA_000427075.1_ILRI005_genomic.fna	GCA_001592425.1_ASM159242v1_genomic.fna	GCA_001655175.1_ASM165517v1_genomic.fna	GCA_000302475.2_ASM30247v2_genomic.fna	GCA_001266635.1_ASM126663v1_genomic.fna	GCA_001190825.1_ASM119082v1_genomic.fna	GCA_000730255.1_ASM73025v1_genomic.fna	GCA_000730215.2_ASM73021v2_genomic.fna	GCA_001190885.1_ASM119088v1_genomic.fna	GCA_000782855.1_ASM78285v1_genomic.fna	GCA_000007265.1_ASM726v1_genomic.fna
-using a threshold of 10 at iteration number 14 :	GCA_000427055.1_ILRI112_genomic.fna	GCA_000427075.1_ILRI005_genomic.fna	GCA_001592425.1_ASM159242v1_genomic.fna
-using a threshold of 15 at iteration number 14 :	GCA_000427055.1_ILRI112_genomic.fna	GCA_000427075.1_ILRI005_genomic.fna
-using a threshold of 20 at iteration number 14 :	GCA_000427055.1_ILRI112_genomic.fna
-using a threshold of 25 at iteration number 14 :	GCA_000427055.1_ILRI112_genomic.fna
-using a threshold of 30 at iteration number 14 :	GCA_000427055.1_ILRI112_genomic.fna
-using a threshold of 35 at iteration number 14 :	GCA_000427055.1_ILRI112_genomic.fna
-using a threshold of 40 at iteration number 14 :	GCA_000427055.1_ILRI112_genomic.fna
-using a threshold of 45 at iteration number 14 :	GCA_000427055.1_ILRI112_genomic.fna
-using a threshold of 50 at iteration number 14 :	GCA_000427055.1_ILRI112_genomic.fna
-using a threshold of 55 at iteration number 14 :	GCA_000427055.1_ILRI112_genomic.fna
-using a threshold of 60 at iteration number 14 :	
-using a threshold of 65 at iteration number 14 :	
-using a threshold of 70 at iteration number 14 :	
-using a threshold of 75 at iteration number 14 :	
-using a threshold of 80 at iteration number 14 :	
-using a threshold of 85 at iteration number 14 :	
-using a threshold of 90 at iteration number 14 :	
-using a threshold of 95 at iteration number 14 :	
-using a threshold of 100 at iteration number 14 :	
-using a threshold of 105 at iteration number 14 :	
-using a threshold of 110 at iteration number 14 :	
-using a threshold of 115 at iteration number 14 :	
-using a threshold of 120 at iteration number 14 :	
-using a threshold of 125 at iteration number 14 :	
-using a threshold of 130 at iteration number 14 :	
-using a threshold of 135 at iteration number 14 :	
-using a threshold of 140 at iteration number 14 :	
-using a threshold of 145 at iteration number 14 :	
-using a threshold of 150 at iteration number 14 :	
-using a threshold of 155 at iteration number 14 :	
-using a threshold of 160 at iteration number 14 :	
-using a threshold of 165 at iteration number 14 :	
-using a threshold of 170 at iteration number 14 :	
-using a threshold of 175 at iteration number 14 :	
-using a threshold of 180 at iteration number 14 :	
-using a threshold of 185 at iteration number 14 :	
-using a threshold of 190 at iteration number 14 :	
-using a threshold of 195 at iteration number 14 :	
+Threshold	Removed_genomes
+0	GCA_000427055.1_ILRI112_genomic.fna GCA_000427075.1_ILRI005_genomic.fna GCA_001592425.1_ASM159242v1_genomic.fna GCA_001655175.1_ASM165517v1_genomic.fna GCA_001266635.1_ASM126663v1_genomic.fna GCA_001190825.1_ASM119082v1_genomic.fna GCA_000730215.2_ASM73021v2_genomic.fna GCA_001190885.1_ASM119088v1_genomic.fna GCA_000012705.1_ASM1270v1_genomic.fna GCA_000782855.1_ASM78285v1_genomic.fna GCA_000302475.2_ASM30247v2_genomic.fna GCA_000831105.1_ASM83110v1_genomic.fna GCA_000689235.1_GBCO_p1_genomic.fna GCA_000196055.1_ASM19605v1_genomic.fna GCA_001552035.1_ASM155203v1_genomic.fna GCA_000730255.1_ASM73025v1_genomic.fna GCA_000831125.1_ASM83112v1_genomic.fna GCA_001448985.1_ASM144898v1_genomic.fna GCA_001190865.1_ASM119086v1_genomic.fna GCA_000007265.1_ASM726v1_genomic.fna GCA_000636115.1_ASM63611v1_genomic.fna GCA_000831145.1_ASM83114v1_genomic.fna GCA_001275545.2_ASM127554v2_genomic.fna
+5	GCA_000427055.1_ILRI112_genomic.fna GCA_000427075.1_ILRI005_genomic.fna GCA_001592425.1_ASM159242v1_genomic.fna GCA_001655175.1_ASM165517v1_genomic.fna GCA_000302475.2_ASM30247v2_genomic.fna GCA_001266635.1_ASM126663v1_genomic.fna GCA_001190825.1_ASM119082v1_genomic.fna GCA_000730255.1_ASM73025v1_genomic.fna GCA_000730215.2_ASM73021v2_genomic.fna GCA_001190885.1_ASM119088v1_genomic.fna GCA_000782855.1_ASM78285v1_genomic.fna GCA_000007265.1_ASM726v1_genomic.fna
+10	GCA_000427055.1_ILRI112_genomic.fna GCA_000427075.1_ILRI005_genomic.fna GCA_001592425.1_ASM159242v1_genomic.fna
+15	GCA_000427055.1_ILRI112_genomic.fna GCA_000427075.1_ILRI005_genomic.fna
+20	GCA_000427055.1_ILRI112_genomic.fna
+25	GCA_000427055.1_ILRI112_genomic.fna
+30	GCA_000427055.1_ILRI112_genomic.fna
+35	GCA_000427055.1_ILRI112_genomic.fna
+40	GCA_000427055.1_ILRI112_genomic.fna
+45	GCA_000427055.1_ILRI112_genomic.fna
+50	GCA_000427055.1_ILRI112_genomic.fna
+55	GCA_000427055.1_ILRI112_genomic.fna
+60	
+65	
+70	
+75	
+80	
+85	
+90	
+95	
+100	
+105	
+110	
+115	
+120	
+125	
+130	
+135	
+140	
+145	
+150	
+155	
+160	
+165	
+170	
+175	
+180	
+185	
+190	
+195	

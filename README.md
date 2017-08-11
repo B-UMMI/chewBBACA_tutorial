@@ -74,7 +74,7 @@ Now the file `cgMLST_completegenomes/cgMLST.tsv` can be concatenated with the al
 
 The new concatenated file was analyzed in order to assess the cgMLST allele quality attribution for all the genomes.
 
-`chewBBACA.py TestGenomeQuality -i results_alleles.tsv -n 13 -t 300 -s 5`
+`chewBBACA.py TestGenomeQuality -i cgMLST_all.tsv -n 13 -t 300 -s 5`
 
 ![Genome quality testing of all genomes](http://i.imgur.com/j4u22ZE.png)
 [larger image here fig 2](http://i.imgur.com/j4u22ZE.png) or [see interactive plot online](http://im.fm.ul.pt/chewBBACA/GenomeQual/GenomeQualityPlot_all_genomes.html)
