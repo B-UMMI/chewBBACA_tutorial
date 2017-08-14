@@ -57,15 +57,15 @@ There you can find the list of loci present in 95% of the strains per threshold,
 and analyzed with [MLST](https://github.com/tseemann/mlst) in order to exclude possibly mislabeled samples as _Streptococcus agalactiae_.
 
 Out of the **682 genomes**, 2 (GCA_000323065.2_ASM32306v2 and GCA_001017915.1_ASM101791v1) were detected as being of a different species/contamination and removed from the analysis.
-Allele call was performed on the remaining **680 genomes** using the **1264 loci** for schema validation. Paralog detection found no paralog loci.
+Allele call was performed on the bona fide  _Streptococcus agalactiae_ **680 genomes** using the **1264 loci** for schema validation. Paralog detection found no paralog loci.
 
 
 `chewBBACA.py Allelecall -i .genomes/ -g listgenes_core.txt -o results --cpu 20 -t "Streptococcus agalactiae"`
 
 Run on a slurm based HPC with 20 cpu took approximately 41 mins to complete (an average of 3.5 secs per genome)
 
-Since our previous complete genomes allele call was performed with the wgMLST schema we need to remove the loci that constitute the auxiliary genome, in order to be able to compare with the cgMLST allele call we performed for the 680 genomes.  
-We select the alleleCallMatrix_cg.tsv file we previously created (already paralog free but still a wgMLST profile) and we extracted only the loci present in 95% of the matrix.
+Since our initial 32 genomes allele call was performed with the wgMLST schema we need to remove the loci that constitute the auxiliary genome, in order to be able to compare with the cgMLST allele call we performed for the 680 genomes.  
+We select the alleleCallMatrix_cg.tsv file we previously created (already paralog free but still a wgMLST profile) and we extract only the loci present in 95% of the matrix.
 
 `ExtractCgMLST -i alleleCallMatrix_cg.tsv -o cgMLST_completegenomes -p 0.95`
 
@@ -78,12 +78,10 @@ The new concatenated file was analyzed in order to assess the cgMLST allele qual
 ![Genome quality testing of all genomes](http://i.imgur.com/j4u22ZE.png)
 [larger image here fig 2](http://i.imgur.com/j4u22ZE.png) or [see interactive plot online](http://im.fm.ul.pt/chewBBACA/GenomeQual/GenomeQualityPlot_all_genomes.html)
 
-While the presence of locus in 95% of genomes remains constant at around **1200** loci, considering all
-or most of the genomes (90%<x<100%) the number of loci present in all genomes is very low (34) and presents some variation when some specific genomes are removed from the analysis.
+While the number of loci present in 95% of genomes remains virtually constant at around **1200** loci, considering all
+or most of the genomes (90%<x≤100%) the number of loci present is lower and presents some variation when specific genomes are removed from the analysis.
 
-We selected the results at the threshold of 25 for further analysis as it presented a significant
- loci presence change in 95% of genomes (+50 loci) and an acceptable loci
- presence in all considered genomes (650 genomes/437 loci).
+We selected the results at the threshold of 25 for further analysis. Moving to a lower threshold there is step increase in the number of loci present in 95% and 99% of genomes that could represent the exclusion of a more divergent clade from the analysis. At the threshold of 25 there is an acceptable number of loci present in all considered genomes (650 genomes/437 loci), which we felt would afford a good discriminatory power.
 
 The genomes that were detected for each threshold are presented on the file `analysis_all/removedGenomes.txt` and a file `analysis_all/removedGenomes_25.txt` was created with only the genomes detected for the threshold at 25.
 
