@@ -59,13 +59,11 @@ and analyzed with [MLST](https://github.com/tseemann/mlst) in order to exclude p
 Out of the **682 genomes**, 2 (GCA_000323065.2_ASM32306v2 and GCA_001017915.1_ASM101791v1) were detected as being of a different species/contamination and removed from the analysis.
 Allele call was performed on the bona fide  _Streptococcus agalactiae_ **680 genomes** using the **1264 loci** for schema validation. Paralog detection found no paralog loci.
 
-
 `chewBBACA.py Allelecall -i .genomes/ -g listgenes_core.txt -o results --cpu 20 -t "Streptococcus agalactiae"`
 
 Run on a slurm based HPC with 20 cpu took approximately 41 mins to complete (an average of 3.5 secs per genome)
 
-Since our initial 32 genomes allele call was performed with the wgMLST schema we need to remove the loci that constitute the auxiliary genome, in order to be able to compare with the cgMLST allele call we performed for the 680 genomes.  
-We select the alleleCallMatrix_cg.tsv file we previously created (already paralog free but still a wgMLST profile) and we extract only the loci present in 95% of the matrix.
+Since our initial 32 genomes allele call was performed with the wgMLST schema we need to remove the loci that constitute the auxiliary genome, in order to be able to compare with the cgMLST allele call we performed for the 680 genomes.  We select the `alleleCallMatrix_cg.tsv` file we previously created (already paralog free but still a wgMLST profile) and we extract only the loci present in 95% of the matrix.
 
 `ExtractCgMLST -i alleleCallMatrix_cg.tsv -o cgMLST_completegenomes -p 0.95`
 
@@ -81,58 +79,57 @@ The new concatenated file was analyzed in order to assess the cgMLST allele qual
 While the number of loci present in 95% of genomes remains virtually constant at around **1200** loci, considering all
 or most of the genomes (90%<x≤100%) the number of loci present is lower and presents some variation when specific genomes are removed from the analysis.
 
-We selected the results at the threshold of 25 for further analysis. Moving to a lower threshold there is step increase in the number of loci present in 95% and 99% of genomes that could represent the exclusion of a more divergent clade from the analysis. At the threshold of 25 there is an acceptable number of loci present in all considered genomes (650 genomes/437 loci), which we felt would afford a good discriminatory power.
+We selected the results at the threshold of 25 for further analysis. Although this selection is somewhat arbitrary, when moving to a lower threshold there is step increase in the number of loci present in 95% and 99% of genomes that could represent the exclusion of a more divergent clade from the analysis. Furthermore, at the threshold of 25 there is an acceptable number of loci present in all considered genomes (650 genomes/437 loci), which we felt would afford a good discriminatory power.
 
-The genomes that were detected for each threshold are presented on the file `analysis_all/removedGenomes.txt` and a file `analysis_all/removedGenomes_25.txt` was created with only the genomes detected for the threshold at 25.
+The genomes that were removed at each threshold are indicated in the file `analysis_all/removedGenomes.txt` and a file `analysis_all/removedGenomes_25.txt` was created with only the genomes removed at the 25 threshold.
+
+The following command creates a directory `analysis_all/cgMLST_25/` and saves the cgMLST schema selected at the chosen threshold to the file `cgMLST.tsv`.
 
 `chewBBACA.py ExtractCgMLST -i cgMLST_all.tsv -o cgMLST_25 -g removedGenomes_25.txt`
 
 ## Minimum Spanning Tree
-`analysis_all/cgMLST_25/cgMLST.tsv` was uploaded to Phyloviz online and can be accessed [here](https://online.phyloviz.net/main/dataset/share/cfab1610a3ca3a80cf9c139e436ce741fc5fa29dcc5aeb3988025491d4434143fc72f6284aaff7d60c6a2ae5e19f57d6be3e5e0baf679a7e37d4ecb96f1d746b8a7cee5882f4a65f586967bd0143)
+`analysis_all/cgMLST_25/cgMLST.tsv` was uploaded to [Phyloviz online](https://online.phyloviz.net) and can be accessed [here](https://online.phyloviz.net/main/dataset/share/cfab1610a3ca3a80cf9c139e436ce741fc5fa29dcc5aeb3988025491d4434143fc72f6284aaff7d60c6a2ae5e19f57d6be3e5e0baf679a7e37d4ecb96f1d746b8a7cee5882f4a65f586967bd0143)
 
 
 ## Genome Quality analysis
-Since no quality control was previously performed, it is possible that some assemblies
-here included were of lower quality. A general analysis of the assemblies show a N50
+Since the quality of the used assemblies was not confirmed, it is possible that some of the assemblies
+included were of low quality. A general analysis of the assemblies show a N50
 variation that ranges from 8055 to over 2.2M, while the number of contigs ranges between
-1 and 553 per sample. These results made us question how the quality of the
-genomes might had affected the allele call results and consequently provoked severe drop on
-locus present in all genomes.  
+1 and 553. These results made us suspect that the quality of the
+genomes could have affected the allele call results and consequently caused a significant drop in the number of loci detected as present in all genomes.  
 
-As stated previously, in order to obtain a considerable comparable cgMLST profile,
-some genomes had to be removed (62) since they presented more missing data than others.
-In order to assess the possible reason of their poor allele call performance, two plots
-were built. The removed genomes were then highlighted and dashed lines linking the same
-genomes annotations.
+As stated previously, to obtain the cgMLST schema,
+some genomes (n=62) had to be removed since they were extremes cases of missing data.
+In order to assess the possible reason for their poor allele call performance, two plots
+were built. The removed genomes were then highlighted and dashed lines were drawn linking the values for the same genomes.
 
-The first plot representing the total number of bp on contigs with a size over
-10k bp and the N50 of all assemblies, sorted by decreasing values
+The first plot represents the total number of bp in contigs with a size >10 kbp and the N50 of the assemblies, sorted by decreasing values.
 
 ![Genome Analysis](http://i.imgur.com/I0fNqtd.png)
 [larger image fig 3](http://i.imgur.com/I0fNqtd.png)
 
-The second plot representing the total number of contigs and the number of
-contigs over 10k bp
+The second plot represents the total number of contigs and the number of
+contigs >10 kbp
 
 ![Genome Analysis 2](http://i.imgur.com/fabxi0Z.png)
 [larger image fig 4](http://i.imgur.com/fabxi0Z.png)
 
 [See interactive plot online](http://im.fm.ul.pt/chewBBACA/GenomeQual/AssemblyStatsStack.html)
 
-At first sight, most of the removed genomes (57/62) were located on the lower number of
-bp/N50 (fig.3) and the higher number of contigs (fig.4)
+At first sight, most of the removed genomes (57/62) were located on the lower range of
+N50 and bp in contigs >10 kbp (fig.3) and the higher number of contigs (fig.4)
 
-The remaining 5 genomes were individually checked :
+The 5 genomes that were outside this pattern were individually checked :
 
-1. **GCA_000186445.1** [here](https://www.ncbi.nlm.nih.gov/assembly/GCA_000186445.1) - 21 contigs but only 1 is above 10k (Scaffold with lot of N ,134 real contigs)
+1. **GCA_000186445.1** [here](https://www.ncbi.nlm.nih.gov/assembly/GCA_000186445.1) - 21 contigs but only 1 is above 10k (Scaffold with lot of Ns, 134 real contigs)
 2. **GCA_000221325.2** [here](https://www.ncbi.nlm.nih.gov/assembly/GCA_000221325.2)- NCBI curated it out of RefSeq because it had a genome length too large
 3. **GCA_000427055.1** [here](https://www.ncbi.nlm.nih.gov/assembly/GCA_000427055.1)- NCBI curated it out of RefSeq because it had many frameshifted proteins
-4. **GCA_000289455.1** [here](https://www.ncbi.nlm.nih.gov/assembly/GCA_000289455.1)- No ST found. Assembly has a problem not yet detected?
+4. **GCA_000289455.1** [here](https://www.ncbi.nlm.nih.gov/assembly/GCA_000289455.1)- No ST found. We concluded the assembly has a problem but we have not yet identified it.
 5. **GCA_000288835.1** [here](https://www.ncbi.nlm.nih.gov/assembly/GCA_000288835.1)- NCBI curated it out of RefSeq because it had many frameshifted proteins
 
 
 ## Schema Evaluation
-Schema Evaluator was run on the cgMLST schema :
+Schema Evaluator was run on the cgMLST schema:
 
 `chewBBACA.py SchemaEvaluator -i schema_seed/ -l rms/RmS.html -ta 11 --title "cgMLST schema GBS tutorial schema evaluator" --cpu 6`
 
