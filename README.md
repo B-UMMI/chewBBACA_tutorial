@@ -39,7 +39,7 @@ The output example is present in `chewBBACA_tutorial/results_cg/results_20170809
 that were removed from further analysis. For a more detailed description see the [Alelle Calling](https://github.com/B-UMMI/chewBBACA/wiki/2.-Allele-Calling) entry on the wiki.
 
 
-`chewBBACA.py RemoveGenes -i results_alleles.txt -g RepeatedLoci.txt -o alleleCallMatrix_cg`
+`chewBBACA.py RemoveGenes -i results_alleles.tsv -g RepeatedLoci.txt -o alleleCallMatrix_cg`
 
 A set of **1133** loci were found to be present in all the analyzed complete genomes, while **1264** loci were present in at least 95%.
 
