@@ -61,11 +61,11 @@ Allele call was performed on the bona fide  _Streptococcus agalactiae_ **680 gen
 
 `chewBBACA.py Allelecall -i .genomes/ -g listgenes_core.txt -o results --cpu 20 -t "Streptococcus agalactiae"`
 
-Run on a slurm based HPC with 20 cpu took approximately 41 mins to complete (an average of 3.5 secs per genome)
+Run on a slurm based HPC with 20 cpu took approximately 45 mins to complete (an average of 4 secs per genome)
 
 Since our initial 32 genomes allele call was performed with the wgMLST schema we need to remove the loci that constitute the auxiliary genome, in order to be able to compare with the cgMLST allele call we performed for the 680 genomes.  We select the `alleleCallMatrix_cg.tsv` file we previously created (already paralog free but still a wgMLST profile) and we extract only the loci present in 95% of the matrix.
 
-`ExtractCgMLST -i alleleCallMatrix_cg.tsv -o cgMLST_completegenomes -p 0.95`
+`chewBBACA.py ExtractCgMLST -i alleleCallMatrix_cg.tsv -o cgMLST_completegenomes -p 0.95`
 
 Now the file `cgMLST_completegenomes/cgMLST.tsv` can be concatenated with the allele call result from the 680 genomes `results_all/results_20170809T110653/results_alleles.tsv`. The concatenated file can be found at `analysis_all/cgMLST_all.tsv`.
 
@@ -73,13 +73,13 @@ The new concatenated file was analyzed in order to assess the cgMLST allele qual
 
 `chewBBACA.py TestGenomeQuality -i cgMLST_all.tsv -n 13 -t 300 -s 5`
 
-![Genome quality testing of all genomes](http://i.imgur.com/j4u22ZE.png)
-[larger image here fig 2](http://i.imgur.com/j4u22ZE.png) or [see interactive plot online](http://im.fm.ul.pt/chewBBACA/GenomeQual/GenomeQualityPlot_all_genomes.html)
+![Genome quality testing of all genomes](https://i.imgur.com/sKHHdKt.png)
+[larger image here fig 2](https://i.imgur.com/sKHHdKt.png) or [see interactive plot online](http://im.fm.ul.pt/chewBBACA/GenomeQual/GenomeQualityPlot_all_genomes.html)
 
 While the number of loci present in 95% of genomes remains virtually constant at around **1200** loci, considering all
 or most of the genomes (90%<x≤100%) the number of loci present is lower and presents some variation when specific genomes are removed from the analysis.
 
-We selected the results at the threshold of 25 for further analysis. Although this selection is somewhat arbitrary, when moving to a lower threshold there is step increase in the number of loci present in 95% and 99% of genomes that could represent the exclusion of a more divergent clade from the analysis. Furthermore, at the threshold of 25 there is an acceptable number of loci present in all considered genomes (650 genomes/437 loci), which we felt would afford a good discriminatory power.
+We selected the results at the threshold of 25 for further analysis. Although this selection is somewhat arbitrary, when moving to a lower threshold there is step increase in the number of loci present in 95% and 99% of genomes that could represent the exclusion of a more divergent clade from the analysis. Furthermore, at the threshold of 25 there is an acceptable number of loci present in all considered genomes (651 genomes/435 loci), which we felt would afford a good discriminatory power.
 
 The genomes that were removed at each threshold are indicated in the file `analysis_all/removedGenomes.txt` and a file `analysis_all/removedGenomes_25.txt` was created with only the genomes removed at the 25 threshold.
 
@@ -88,7 +88,7 @@ The following command creates a directory `analysis_all/cgMLST_25/` and saves th
 `chewBBACA.py ExtractCgMLST -i cgMLST_all.tsv -o cgMLST_25 -g removedGenomes_25.txt`
 
 ## Minimum Spanning Tree
-`analysis_all/cgMLST_25/cgMLST.tsv` was uploaded to [Phyloviz online](https://online.phyloviz.net) and can be accessed [here](https://online.phyloviz.net/main/dataset/share/cfab1610a3ca3a80cf9c139e436ce741fc5fa29dcc5aeb3988025491d4434143fc72f6284aaff7d60c6a2ae5e19f57d6be3e5e0baf679a7e37d4ecb96f1d746b8a7cee5882f4a65f586967bd0143)
+`analysis_all/cgMLST_25/cgMLST.tsv` was uploaded to [Phyloviz online](https://online.phyloviz.net) and can be accessed [here](https://online.phyloviz.net/main/dataset/share/cfab1610a3ca3a80cf9c139e436ce741fc5fa29dcc5aeb3988025491d4434143fc72f6284aaff7d60c6a2ae5e19f57d6be3e5e0aaf369a7e37d5ecef6f1d746b8a7fee5882f4a65a586967be0146)
 
 
 ## Genome Quality analysis
@@ -116,7 +116,7 @@ contigs >10 kbp
 
 [See interactive plot online](http://im.fm.ul.pt/chewBBACA/GenomeQual/AssemblyStatsStack.html)
 
-At first sight, most of the removed genomes (57/62) were located on the lower range of
+At first sight, most of the removed genomes (57/61) were located on the lower range of
 N50 and bp in contigs >10 kbp (fig.3) and the higher number of contigs (fig.4)
 
 The 5 genomes that were outside this pattern were individually checked :
