@@ -26,11 +26,9 @@ At this point the schema is defined as a set of loci each with a single allele.
 ## Allele calling
 The next step was to perform allele calling with the created wgMLST schema for the **32** complete genomes.
 
-`chewBBACA.py Allelecall -i complete_genomes/ -g schema_seed/ -o results_cg --cpu 6 -t "Streptococcus agalactiae"`
+`chewBBACA.py AlleleCall -i complete_genomes/ -g schema_seed/ -o results_cg --cpu 6 -t "Streptococcus agalactiae"`
 
-[comment]: <> (JAC IS here in review)
-
-The allele call used the default BSR threshold of 0.6 (more information on the thresold [here](https://github.com/B-UMMI/chewBBACA/wiki/2.-Allele-Calling)) and took approximately 22 mins to complete (an average of 41 secs per/for each genome)  
+The allele call used the default BSR threshold of 0.6 (more information on the thresold [here](https://github.com/B-UMMI/chewBBACA/wiki/2.-Allele-Calling)) and took approximately 22 mins to complete (an average of 41 secs per genome)  
 
 ## Paralog detection
 
@@ -39,7 +37,7 @@ The output example is present in `chewBBACA_tutorial/results_cg/results_20170809
 that were removed from further analysis. For a more detailed description see the [Alelle Calling](https://github.com/B-UMMI/chewBBACA/wiki/2.-Allele-Calling) entry on the wiki.
 
 
-`chewBBACA.py RemoveGenes -i results_alleles.txt -g RepeatedLoci.txt -o alleleCallMatrix_cg`
+`chewBBACA.py RemoveGenes -i results_alleles.tsv -g RepeatedLoci.txt -o alleleCallMatrix_cg`
 
 A set of **1133** loci were found to be present in all the analyzed complete genomes, while **1264** loci were present in at least 95%.
 
@@ -59,7 +57,7 @@ and analyzed with [MLST](https://github.com/tseemann/mlst) in order to exclude p
 Out of the **682 genomes**, 2 (GCA_000323065.2_ASM32306v2 and GCA_001017915.1_ASM101791v1) were detected as being of a different species/contamination and removed from the analysis.
 Allele call was performed on the bona fide  _Streptococcus agalactiae_ **680 genomes** using the **1264 loci** for schema validation. Paralog detection found no paralog loci.
 
-`chewBBACA.py Allelecall -i .genomes/ -g listgenes_core.txt -o results --cpu 20 -t "Streptococcus agalactiae"`
+`chewBBACA.py AlleleCall -i .genomes/ -g listgenes_core.txt -o results --cpu 20 -t "Streptococcus agalactiae"`
 
 Run on a slurm based HPC with 20 cpu took approximately 45 mins to complete (an average of 4 secs per genome)
 
