@@ -89,6 +89,7 @@ GCA-000007265-protein184.fasta
 GCA-000007265-protein1854.fasta
 GCA-000007265-protein1887.fasta
 GCA-000007265-protein1888.fasta
+GCA-000007265-protein1917.fasta
 GCA-000007265-protein192.fasta
 GCA-000007265-protein197.fasta
 GCA-000007265-protein1978.fasta
@@ -918,10 +919,10 @@ GCA-001275545-protein3688.fasta
 GCA-001275545-protein3719.fasta
 GCA-001275545-protein3972.fasta
 GCA-001448985-protein15.fasta
-GCA-001552035-protein2262.fasta
-GCA-001552035-protein2962.fasta
-GCA-001552035-protein3475.fasta
-GCA-001552035-protein3517.fasta
+GCA-001552035-protein2256.fasta
+GCA-001552035-protein2956.fasta
+GCA-001552035-protein3469.fasta
+GCA-001552035-protein3511.fasta
 GCA-001592385-protein10.fasta
 GCA-001592385-protein1000.fasta
 GCA-001592385-protein1008.fasta

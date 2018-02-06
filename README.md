@@ -20,7 +20,7 @@ The sequences are present in the `complete_genomes/` folder. The command is the 
 
 `chewBBACA.py CreateSchema -i complete_genomes/ --cpu 6 -o schema_seed -t "Streptococcus agalactiae"`
 
-The command uses 6 CPU and outputs the schema to `schema_seed` folder using the `prodigal` training set for _Streptococcus agalactiae_ and took around 16 minutes to complete resulting on a wgMLST schema wiht 3129 loci.
+The command uses 6 CPU and outputs the schema to `schema_seed` folder using the `prodigal` training set for _Streptococcus agalactiae_ and took around 16 minutes to complete resulting on a wgMLST schema wiht 3126 loci.
 At this point the schema is defined as a set of loci each with a single allele.
 
 ## Allele calling
@@ -28,26 +28,26 @@ The next step was to perform allele calling with the created wgMLST schema for t
 
 `chewBBACA.py AlleleCall -i complete_genomes/ -g schema_seed/ -o results_cg --cpu 6 -t "Streptococcus agalactiae"`
 
-The allele call used the default BSR threshold of 0.6 (more information on the thresold [here](https://github.com/B-UMMI/chewBBACA/wiki/2.-Allele-Calling)) and took approximately 22 mins to complete (an average of 41 secs per genome)  
+The allele call used the default BSR threshold of 0.6 (more information on the thresold [here](https://github.com/B-UMMI/chewBBACA/wiki/2.-Allele-Calling)) and took approximately 12 mins to complete (an average of 22 secs per genome)  
 
 ## Paralog detection
 
 The next step in the analysis is to determine if some of the loci can be considered paralogs, based on the result of the wgMLST allele calling. The _Allele call_ returns a list of Paralogous genes in the `RepeatedLoci.txt` file that can be found on the `results_cg` folder.
-The output example is present in `chewBBACA_tutorial/results_cg/results_20170809T100937/`. In `chewBBACA_tutorial/results_cg/results_20170809T100937/RepeatedLoci.txt`, a set of 24 loci were identified as possible paralogs
+The output example is present in `chewBBACA_tutorial/results_cg/results_20180202T104252/`. In `chewBBACA_tutorial/results_cg/results_20180202T104252/RepeatedLoci.txt`, a set of 27 loci were identified as possible paralogs
 that were removed from further analysis. For a more detailed description see the [Alelle Calling](https://github.com/B-UMMI/chewBBACA/wiki/2.-Allele-Calling) entry on the wiki.
 
 
 `chewBBACA.py RemoveGenes -i results_alleles.tsv -g RepeatedLoci.txt -o alleleCallMatrix_cg`
 
-A set of **1133** loci were found to be present in all the analyzed complete genomes, while **1264** loci were present in at least 95%.
+A set of **1133** loci were found to be present in all the analyzed complete genomes, while **1265** loci were present in at least 95%.
 
 `chewBBACA.py TestGenomeQuality -i alleleCallMatrix_cg.tsv -n 13 -t 200 -s 5`
 
 ![Genome quality testing of complete genomes](http://i.imgur.com/Zh6GRk9.png)
 [larger image fig 1](http://i.imgur.com/Zh6GRk9.png) or [see interactive plot online](http://im.fm.ul.pt/chewBBACA/GenomeQual/GenomeQualityPlot_complete_genomes.html)
 
-For further analysis only the **1264** loci that we chose to represent the cgMLST schema will be used. The list can be retrieved from the `analysis_cg/Genes_95%.txt` that TestGenomeQuality creates.
-There you can find the list of loci present in 95% of the strains per threshold, in this case we will use any threshold from 60 to 195 since the number of loci . You can see the list file with **1264** loci at `analysis_cg/listgenes_core.txt` and for further use you should add for each loci the full path for each locus fasta file.
+For further analysis only the **1265** loci that we chose to represent the cgMLST schema will be used. The list can be retrieved from the `analysis_cg/Genes_95%.txt` that TestGenomeQuality creates.
+There you can find the list of loci present in 95% of the strains per threshold, in this case we will use any threshold from 60 to 195 since the number of loci . You can see the list file with **1265** loci at `analysis_cg/listgenes_core.txt` and for further use you should add for each loci the full path for each locus fasta file.
 
 ## Allele call for 682 _Streptococci agalactiae_ assemblies
 
@@ -55,11 +55,11 @@ There you can find the list of loci present in 95% of the strains per threshold,
 and analyzed with [MLST](https://github.com/tseemann/mlst) in order to exclude possibly mislabeled samples as _Streptococcus agalactiae_.
 
 Out of the **682 genomes**, 2 (GCA_000323065.2_ASM32306v2 and GCA_001017915.1_ASM101791v1) were detected as being of a different species/contamination and removed from the analysis.
-Allele call was performed on the bona fide  _Streptococcus agalactiae_ **680 genomes** using the **1264 loci** for schema validation. Paralog detection found no paralog loci.
+Allele call was performed on the bona fide  _Streptococcus agalactiae_ **680 genomes** using the **1265 loci** for schema validation. Paralog detection found no paralog loci.
 
-`chewBBACA.py AlleleCall -i .genomes/ -g listgenes_core.txt -o results --cpu 20 -t "Streptococcus agalactiae"`
+`chewBBACA.py AlleleCall -i .genomes/ -g listgenes_core.txt -o results --cpu 6 -t "Streptococcus agalactiae"`
 
-Run on a slurm based HPC with 20 cpu took approximately 45 mins to complete (an average of 4 secs per genome)
+Run on the same laptop with 6 cpu took approximately 30 mins to complete (an average of 2.6 secs per genome)
 
 Since our initial 32 genomes allele call was performed with the wgMLST schema we need to remove the loci that constitute the auxiliary genome, in order to be able to compare with the cgMLST allele call we performed for the 680 genomes.  We select the `alleleCallMatrix_cg.tsv` file we previously created (already paralog free but still a wgMLST profile) and we extract only the loci present in 95% of the matrix.
 
@@ -77,7 +77,7 @@ The new concatenated file was analyzed in order to assess the cgMLST allele qual
 While the number of loci present in 95% of genomes remains virtually constant at around **1200** loci, considering all
 or most of the genomes (90%<x≤100%) the number of loci present is lower and presents some variation when specific genomes are removed from the analysis.
 
-We selected the results at the threshold of 25 for further analysis. Although this selection is somewhat arbitrary, when moving to a lower threshold there is step increase in the number of loci present in 95% and 99% of genomes that could represent the exclusion of a more divergent clade from the analysis. Furthermore, at the threshold of 25 there is an acceptable number of loci present in all considered genomes (651 genomes/435 loci), which we felt would afford a good discriminatory power.
+We selected the results at the threshold of 25 for further analysis. Although this selection is somewhat arbitrary, when moving to a lower threshold there is step increase in the number of loci present in 95% and 99% of genomes that could represent the exclusion of a more divergent clade from the analysis. Furthermore, at the threshold of 25 there is an acceptable number of loci present in all considered genomes (650 genomes/440 loci), which we felt would afford a good discriminatory power.
 
 The genomes that were removed at each threshold are indicated in the file `analysis_all/removedGenomes.txt` and a file `analysis_all/removedGenomes_25.txt` was created with only the genomes removed at the 25 threshold.
 
