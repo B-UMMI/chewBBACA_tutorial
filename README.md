@@ -18,7 +18,7 @@ The reported times using the 32 complete genomes were calculated for a Dual Quad
 The wgMLST schema was created using the **32** _Streptococcus agalactiae_ complete genomes (32 genomes with a level of assembly classified as complete genome or chromossome)  available at NCBI.
 The sequences are present in the `complete_genomes/` folder. The command is the following:  
 
-`chewBBACA.py CreateSchema -i complete_genomes/ --cpu 6 -o schema_seed -t "Streptococcus agalactiae"`
+`chewBBACA.py CreateSchema -i complete_genomes/ --cpu 6 -o schema_seed --ptf Streptococcus_agalactiae.trn`
 
 The command uses 6 CPU and outputs the schema to `schema_seed` folder using the `prodigal` training set for _Streptococcus agalactiae_ and took around 16 minutes to complete resulting on a wgMLST schema wiht 3126 loci.
 At this point the schema is defined as a set of loci each with a single allele.
@@ -26,7 +26,7 @@ At this point the schema is defined as a set of loci each with a single allele.
 ## Allele calling
 The next step was to perform allele calling with the created wgMLST schema for the **32** complete genomes.
 
-`chewBBACA.py AlleleCall -i complete_genomes/ -g schema_seed/ -o results_cg --cpu 6 -t "Streptococcus agalactiae"`
+`chewBBACA.py AlleleCall -i complete_genomes/ -g schema_seed/ -o results_cg --cpu 6 --ptf Streptococcus_agalactiae.trn`
 
 The allele call used the default BSR threshold of 0.6 (more information on the thresold [here](https://github.com/B-UMMI/chewBBACA/wiki/2.-Allele-Calling)) and took approximately 12 mins to complete (an average of 22 secs per genome)  
 
@@ -43,13 +43,13 @@ A set of **1133** loci were found to be present in all the analyzed complete gen
 
 `chewBBACA.py TestGenomeQuality -i alleleCallMatrix_cg.tsv -n 13 -t 200 -s 5`
 
-![Genome quality testing of complete genomes](http://i.imgur.com/Zh6GRk9.png)
-[larger image fig 1](http://i.imgur.com/Zh6GRk9.png) or [see interactive plot online](http://im.fm.ul.pt/chewBBACA/GenomeQual/GenomeQualityPlot_complete_genomes.html)
+![Genome quality testing of complete genomes](https://i.imgur.com/uf3Hygd.png)
+[larger image fig 1](https://i.imgur.com/uf3Hygd.png) or [see interactive plot online](http://im.fm.ul.pt/chewBBACA/GenomeQual/GenomeQualityPlot_complete_genomes.html)
 
 For further analysis only the **1265** loci that we chose to represent the cgMLST schema will be used. The list can be retrieved from the `analysis_cg/Genes_95%.txt` that TestGenomeQuality creates.
 There you can find the list of loci present in 95% of the strains per threshold, in this case we will use any threshold from 60 to 195 since the number of loci . You can see the list file with **1265** loci at `analysis_cg/listgenes_core.txt` and for further use you should add for each loci the full path for each locus fasta file.
 
-## Allele call for 682 _Streptococci agalactiae_ assemblies
+## Allele call for 682 _Streptococcus agalactiae_ assemblies
 
 **682 assemblies** of _Streptococcus agalactiae_ available on NCBI were downloaded ( 03-08-2016, downloadable zip file [here](https://drive.google.com/file/d/0Bw6VuoagsdhmaWEtR25fODlJTEk/view?usp=sharing))
 and analyzed with [MLST](https://github.com/tseemann/mlst) in order to exclude possibly mislabeled samples as _Streptococcus agalactiae_.
@@ -57,7 +57,7 @@ and analyzed with [MLST](https://github.com/tseemann/mlst) in order to exclude p
 Out of the **682 genomes**, 2 (GCA_000323065.2_ASM32306v2 and GCA_001017915.1_ASM101791v1) were detected as being of a different species/contamination and removed from the analysis.
 Allele call was performed on the bona fide  _Streptococcus agalactiae_ **680 genomes** using the **1265 loci** for schema validation. Paralog detection found no paralog loci.
 
-`chewBBACA.py AlleleCall -i .genomes/ -g listgenes_core.txt -o results --cpu 6 -t "Streptococcus agalactiae"`
+`chewBBACA.py AlleleCall -i .genomes/ -g listgenes_core.txt -o results --cpu 6 --ptf Streptococcus_agalactiae.trn`
 
 Run on the same laptop with 6 cpu took approximately 30 mins to complete (an average of 2.6 secs per genome)
 
@@ -65,14 +65,14 @@ Since our initial 32 genomes allele call was performed with the wgMLST schema we
 
 `chewBBACA.py ExtractCgMLST -i alleleCallMatrix_cg.tsv -o cgMLST_completegenomes -p 0.95`
 
-Now the file `cgMLST_completegenomes/cgMLST.tsv` can be concatenated with the allele call result from the 680 genomes `results_all/results_20170809T110653/results_alleles.tsv`. The concatenated file can be found at `analysis_all/cgMLST_all.tsv`.
+Now the file `cgMLST_completegenomes/cgMLST.tsv` can be concatenated with the allele call result from the 680 genomes `results_all/results_20180202T112710/results_alleles.tsv`. The concatenated file can be found at `analysis_all/cgMLST_all.tsv`.
 
 The new concatenated file was analyzed in order to assess the cgMLST allele quality attribution for all the genomes.
 
 `chewBBACA.py TestGenomeQuality -i cgMLST_all.tsv -n 13 -t 300 -s 5`
 
-![Genome quality testing of all genomes](https://i.imgur.com/sKHHdKt.png)
-[larger image here fig 2](https://i.imgur.com/sKHHdKt.png) or [see interactive plot online](http://im.fm.ul.pt/chewBBACA/GenomeQual/GenomeQualityPlot_all_genomes.html)
+![Genome quality testing of all genomes](https://i.imgur.com/m1OSycz.png)
+[larger image here fig 2](https://i.imgur.com/m1OSycz.png) or [see interactive plot online](http://im.fm.ul.pt/chewBBACA/GenomeQual/GenomeQualityPlot_all_genomes.html)
 
 While the number of loci present in 95% of genomes remains virtually constant at around **1200** loci, considering all
 or most of the genomes (90%<x≤100%) the number of loci present is lower and presents some variation when specific genomes are removed from the analysis.
@@ -86,7 +86,7 @@ The following command creates a directory `analysis_all/cgMLST_25/` and saves th
 `chewBBACA.py ExtractCgMLST -i cgMLST_all.tsv -o cgMLST_25 -g removedGenomes_25.txt`
 
 ## Minimum Spanning Tree
-`analysis_all/cgMLST_25/cgMLST.tsv` was uploaded to [Phyloviz online](https://online.phyloviz.net) and can be accessed [here](https://online.phyloviz.net/main/dataset/share/cfab1610a3ca3a80cf9c139e436ce741fc5fa29dcc5aeb3988025491d4434143fc72f6284aaff7d60c6a2ae5e19f57d6be3e5e0aaf369a7e37d5ecef6f1d746b8a7fee5882f4a65a586967be0146)
+`analysis_all/cgMLST_25/cgMLST.tsv` was uploaded to [Phyloviz online](https://online.phyloviz.net) and can be accessed [here](https://online.phyloviz.net/main/dataset/share/cfab1610a3ca3a80cf9c139e436ce741fc5fa29dcc5aeb3988025491d7194044fc73f5284eafad8356322fb0e29e50d6e06d5808ae369a2b37d1ece96e4e716d8d7eeb5c85a5a30c5d3d63bf014643013fa981108bd5bfbacf0a145ab41656a9a67c489b878cb0aa9f2de534ee81b201e198)
 
 
 ## Genome Quality analysis
@@ -114,7 +114,7 @@ contigs >10 kbp
 
 [See interactive plot online](http://im.fm.ul.pt/chewBBACA/GenomeQual/AssemblyStatsStack.html)
 
-At first sight, most of the removed genomes (57/61) were located on the lower range of
+At first sight, most of the removed genomes (56/60) were located on the lower range of
 N50 and bp in contigs >10 kbp (fig.3) and the higher number of contigs (fig.4)
 
 The 5 genomes that were outside this pattern were individually checked :
