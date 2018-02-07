@@ -114,7 +114,7 @@ contigs >10 kbp
 
 [See interactive plot online](http://im.fm.ul.pt/chewBBACA/GenomeQual/AssemblyStatsStack.html)
 
-At first sight, most of the removed genomes (56/60) were located on the lower range of
+At first sight, most of the removed genomes (56/62) were located on the lower range of
 N50 and bp in contigs >10 kbp (fig.3) and the higher number of contigs (fig.4)
 
 The 5 genomes that were outside this pattern were individually checked :
