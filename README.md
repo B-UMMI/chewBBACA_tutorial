@@ -66,7 +66,11 @@ Since our initial 32 genomes allele call was performed with the wgMLST schema we
 
 `chewBBACA.py ExtractCgMLST -i alleleCallMatrix_cg.tsv -o cgMLST_completegenomes -p 0.95`
 
-Now the file `cgMLST_completegenomes/cgMLST.tsv` can be concatenated with the allele call result from the 680 genomes `results_all/results_20180202T112710/results_alleles.tsv`. The concatenated file can be found at `analysis_all/cgMLST_all.tsv`.
+Now the file `cgMLST_completegenomes/cgMLST.tsv` can be concatenated with the allele call result from the 680 genomes `results_all/results_20180202T112710/results_alleles.tsv`. Replace the (timestamp) with the appropriate value.
+
+`chewBBACA.py JoinProfiles -p1 results_cg/results_(timestamp)/cgMLST_completegenomes/cgMLST.tsv -p2 results_all/results_20180202T112710/results_alleles.tsv -o cgMLST_all.tsv`
+
+The concatenated file can be found at `analysis_all/cgMLST_all.tsv`.
 
 The new concatenated file was analyzed in order to assess the cgMLST allele quality attribution for all the genomes.
 
