@@ -80,19 +80,18 @@ chewBBACA.py AlleleCall -i path/to/GBS_Aug2016/ -g .../chewBBACA_tutorial/tutori
 
 It was run on the same laptop with 6 CPU cores and took approximately 39 minutes to complete (an average of 3.4 secs per genome).
 
-Since our initial 32 genomes allele call was performed with the wgMLST schema we need to remove the loci that constitute the auxiliary genome, in order to be able to compare with the cgMLST allele call we performed for the 680 genomes.  We select the `alleleCallMatrix_cg.tsv` file we previously created (already paralog free but still a wgMLST profile) and we extract only the loci present in 95% of the matrix.
+We can now concatenate the cgMLST results for the 32 complete genomes with the cgMLST results for the 680 genomes to have all the results in a single file.
+To concatenate the allelic profiles of both analyses run the following command:
 
-`chewBBACA.py ExtractCgMLST -i alleleCallMatrix_cg.tsv -o cgMLST_completegenomes -p 0.95`
-
-Now the file `cgMLST_completegenomes/cgMLST.tsv` can be concatenated with the allele call result from the 680 genomes `results_all/results_20180202T112710/results_alleles.tsv`. Replace the (timestamp) with the appropriate value.
-
-`chewBBACA.py JoinProfiles -p1 results_cg/results_(timestamp)/cgMLST_completegenomes/cgMLST.tsv -p2 results_all/results_20180202T112710/results_alleles.tsv -o cgMLST_all.tsv`
-
-The concatenated file can be found at `analysis_all/cgMLST_all.tsv`.
+```
+chewBBACA.py JoinProfiles -p1 .../chewBBACA_tutorial/results32_wgMLST/results_<datestamp>/cgMLST_95/cgMLST.tsv -p2 .../chewBBACA_tutorial/results680_cgMLST/results_<datestamp>/results_alleles.tsv -o .../chewBBACA_tutorial/cgMLST_all.tsv
+```
 
 The new concatenated file was analyzed in order to assess the cgMLST allele quality attribution for all the genomes.
 
-`chewBBACA.py TestGenomeQuality -i cgMLST_all.tsv -n 13 -t 300 -s 5`
+```
+chewBBACA.py TestGenomeQuality -i .../chewBBACA_tutorial/cgMLST_all.tsv -n 13 -t 300 -s 5
+```
 
 ![Genome quality testing of all genomes](https://i.imgur.com/m1OSycz.png)
 [larger image here fig 2](https://i.imgur.com/m1OSycz.png) or [see interactive plot online](http://im.fm.ul.pt/chewBBACA/GenomeQual/GenomeQualityPlot_all_genomes.html)
