@@ -11,36 +11,38 @@ The setup is done by the following steps:
     `git clone https://github.com/B-UMMI/chewBBACA_tutorial`
 3. Go to `.../chewBBACA_tutorial/` and run `unzip genomes/complete_genomes.zip` to extract all the complete genomes. A directory named `complete_genomes` will be created in `.../chewBBACA_tutorial/`.
 
-The execution times reported in this tutorial were obtained for a DELL XPS13 (10th Generation Intel® Core™ i7-10710U Processor - 12MB Cache, up to 4.7 GHz, using 6 cores). Using a computer with less powerful specifications can greatly increase the duration of the analyses.
+The execution times reported in this tutorial were obtained for a DELL XPS13 (10th Generation Intel® Core™ i7-10710U Processor - 12MB Cache, up to 4.7 GHz, using 6 cores). Using a computer with less powerful specifications can greatly increase the duration of the analyses.  
+
+The commands used in this tutorial assume that the working directory is the topmost level of the cloned repository, `.../chewBBACA_tutorial/`. The commands should be adapted if they are executed from a different working directory.
 
 ## Schema creation
 
 We will start by creating a wgMLST schema based on **32** _Streptococcus agalactiae_ complete genomes (32 genomes with a level of assembly classified as complete genome or chromossome) available at NCBI.
-The sequences are present in the `.../chewBBACA_tutorial/complete_genomes/` directory. To create the wgMLST schema, run the following command:  
+The sequences are present in the `complete_genomes/` directory. To create the wgMLST schema, run the following command:  
 
 ```
-chewBBACA.py CreateSchema -i .../chewBBACA_tutorial/complete_genomes/ -o .../chewBBACA_tutorial/tutorial_schema --ptf .../chewBBACA_tutorial/Streptococcus_agalactiae.trn --cpu 6
+chewBBACA.py CreateSchema -i complete_genomes/ -o tutorial_schema --ptf Streptococcus_agalactiae.trn --cpu 6
 ```
 
-The schema seed will be available at `.../chewBBACA_tutorial/tutorial_schema/schema_seed`. You should pass the complete path to the Prodigal training file that is included in the cloned repository, `Streptococcus_agalactiae.trn`, to the `--ptf` parameter. We passed the value `6` to the `--cpu` parameter to use 6 CPU cores, but you should pass a value based on the specifications of your machine. In our system, the process took 56 seconds to complete resulting on a wgMLST schema with 3128 loci. At this point the schema is defined as a set of loci each with a single allele.
+The schema seed will be available at `tutorial_schema/schema_seed`. You should pass the complete path to the Prodigal training file that is included in the cloned repository, `Streptococcus_agalactiae.trn`, to the `--ptf` parameter. We passed the value `6` to the `--cpu` parameter to use 6 CPU cores, but you should pass a value based on the specifications of your machine. In our system, the process took 56 seconds to complete resulting on a wgMLST schema with 3128 loci. At this point the schema is defined as a set of loci each with a single allele.
 
 ## Allele calling
 
 The next step is to perform allele calling with the wgMLST schema created in the previous step for the **32** complete genomes. To do so, run the following command:
 
 ```
-chewBBACA.py AlleleCall -i .../chewBBACA_tutorial/complete_genomes/ -g .../chewBBACA_tutorial/tutorial_schema/schema_seed -o .../chewBBACA_tutorial/results32_wgMLST --cpu 6
+chewBBACA.py AlleleCall -i complete_genomes/ -g tutorial_schema/schema_seed -o results32_wgMLST --cpu 6
 ```
 
-The allele call used the default BSR threshold of 0.6 (more information on the threshold [here](https://github.com/B-UMMI/chewBBACA/wiki/2.-Allele-Calling)) and took approximately 17 minutes to complete (an average of 32 seconds per genome). The expected results were also included in the repository in `.../chewBBACA_tutorial/expected_results/Allele_calling/results32_wgMLST` for reference.
+The allele call used the default BSR threshold of 0.6 (more information on the threshold [here](https://github.com/B-UMMI/chewBBACA/wiki/2.-Allele-Calling)) and took approximately 17 minutes to complete (an average of 32 seconds per genome). The expected results were also included in the repository in `expected_results/Allele_calling/results32_wgMLST` for reference.
 
 ## Paralog detection
 
-The next step in the analysis is to determine if some of the loci can be considered paralogs, based on the result of the wgMLST allele calling. The _Allele call_ returns a list of Paralogous genes in the `RepeatedLoci.txt` file that can be found on the `.../chewBBACA_tutorial/results32_wgMLST/results_<datestamp>` folder.
-The `.../chewBBACA_tutorial/results32_wgMLST/results_<datestamp>/RepeatedLoci.txt` file contains a set of 20 loci that were identified as possible paralogs. These loci should be removed from the schema due to the potential uncertainty in allele assignment (for a more detailed description see the [Alelle Calling](https://github.com/B-UMMI/chewBBACA/wiki/2.-Allele-Calling) entry on the wiki). To remove the set of 20 paralogous loci from the allele calling results, run the following command:
+The next step in the analysis is to determine if some of the loci can be considered paralogs, based on the result of the wgMLST allele calling. The _Allele call_ returns a list of Paralogous genes in the `RepeatedLoci.txt` file that can be found on the `results32_wgMLST/results_<datestamp>` folder.
+The `results32_wgMLST/results_<datestamp>/RepeatedLoci.txt` file contains a set of 20 loci that were identified as possible paralogs. These loci should be removed from the schema due to the potential uncertainty in allele assignment (for a more detailed description see the [Alelle Calling](https://github.com/B-UMMI/chewBBACA/wiki/2.-Allele-Calling) entry on the wiki). To remove the set of 20 paralogous loci from the allele calling results, run the following command:
 
 ```
-chewBBACA.py RemoveGenes -i .../chewBBACA_tutorial/results32_wgMLST/results_<datestamp>/results_alleles.tsv -g .../chewBBACA_tutorial/results32_wgMLST/results_<datestamp>/RepeatedLoci.txt -o .../chewBBACA_tutorial/results32_wgMLST/results_<datestamp>/results_alleles_NoParalogs.tsv
+chewBBACA.py RemoveGenes -i results32_wgMLST/results_<datestamp>/results_alleles.tsv -g results32_wgMLST/results_<datestamp>/RepeatedLoci.txt -o results32_wgMLST/results_<datestamp>/results_alleles_NoParalogs.tsv
 ```
 
 This will remove the columns matching the 20 paralogous loci from the allele calling results and save the allelic profiles into the `results_alleles_NoParalogs.tsv` file (the new file contains allelic profiles with 3108 loci).
@@ -50,7 +52,7 @@ This will remove the columns matching the 20 paralogous loci from the allele cal
 We can now determine the set of loci in the core genome based on the allele calling results. The set of loci in the core genome is determined based on a presence threshold. We can run the TestGenomeQuality module to determine the impact of several thresold values in the number of loci in the core genome.
 
 ```
-chewBBACA.py TestGenomeQuality -i .../chewBBACA_tutorial/results32_wgMLST/results_<datestamp>/results_alleles_NoParalogs.tsv -n 13 -t 200 -s 5 -o .../chewBBACA_tutorial/results32_wgMLST/results_<datestamp>/genome_quality_32
+chewBBACA.py TestGenomeQuality -i results32_wgMLST/results_<datestamp>/results_alleles_NoParalogs.tsv -n 13 -t 200 -s 5 -o results32_wgMLST/results_<datestamp>/genome_quality_32
 ```
 
 The process will automatically open a HTML file with the following plot:
@@ -64,9 +66,9 @@ For further analysis only the **1267** loci present in at least 95% of the compl
 We can run the ExtraCgMLST module to quickly determine the set of loci in the core genome at 95%.
 
 ```
-chewBBACA.py ExtractCgMLST -i .../chewBBACA_tutorial/results32_wgMLST/results_<datestamp>/results_alleles_NoParalogs.tsv -o .../chewBBACA_tutorial/results32_wgMLST/results_<datestamp>/cgMLST_95 --t 0.95
+chewBBACA.py ExtractCgMLST -i results32_wgMLST/results_<datestamp>/results_alleles_NoParalogs.tsv -o results32_wgMLST/results_<datestamp>/cgMLST_95 --t 0.95
 ```
-The list with the 1267 loci in the core genome at 95% is in the `.../chewBBACA_tutorial/results32_wgMLST/results_<datestamp>/cgMLST_95/cgMLSTschema.txt` file.
+The list with the 1267 loci in the core genome at 95% is in the `results32_wgMLST/results_<datestamp>/cgMLST_95/cgMLSTschema.txt` file.
 
 ## Allele call for 682 _Streptococcus agalactiae_ assemblies
 
@@ -75,7 +77,7 @@ The list with the 1267 loci in the core genome at 95% is in the `.../chewBBACA_t
 Allele call was performed on the bona fide _Streptococcus agalactiae_ **680 genomes** using the **1267 loci** that constitute the core genome at 95%. Paralog detection found no paralog loci.
 
 ```
-chewBBACA.py AlleleCall -i path/to/GBS_Aug2016/ -g .../chewBBACA_tutorial/tutorial_schema/schema_seed --gl .../chewBBACA_tutorial/results32_wgMLST/results_<datestamp>/cgMLST_95/cgMLSTschema.txt -o .../chewBBACA_tutorial/results680_cgMLST --cpu 6
+chewBBACA.py AlleleCall -i path/to/GBS_Aug2016/ -g tutorial_schema/schema_seed --gl results32_wgMLST/results_<datestamp>/cgMLST_95/cgMLSTschema.txt -o results680_cgMLST --cpu 6
 ```
 
 It was run on the same laptop with 6 CPU cores and took approximately 39 minutes to complete (an average of 3.4 secs per genome).
@@ -84,13 +86,13 @@ We can now concatenate the cgMLST results for the 32 complete genomes with the c
 To concatenate the allelic profiles of both analyses run the following command:
 
 ```
-chewBBACA.py JoinProfiles -p1 .../chewBBACA_tutorial/results32_wgMLST/results_<datestamp>/cgMLST_95/cgMLST.tsv -p2 .../chewBBACA_tutorial/results680_cgMLST/results_<datestamp>/results_alleles.tsv -o .../chewBBACA_tutorial/cgMLST_all.tsv
+chewBBACA.py JoinProfiles -p1 results32_wgMLST/results_<datestamp>/cgMLST_95/cgMLST.tsv -p2 results680_cgMLST/results_<datestamp>/results_alleles.tsv -o cgMLST_all.tsv
 ```
 
 The new concatenated file was analyzed in order to assess the cgMLST allele quality attribution for all the genomes.
 
 ```
-chewBBACA.py TestGenomeQuality -i .../chewBBACA_tutorial/cgMLST_all.tsv -n 13 -t 300 -s 5
+chewBBACA.py TestGenomeQuality -i cgMLST_all.tsv -n 13 -t 300 -s 5
 ```
 
 ![Genome quality testing of all genomes](https://i.imgur.com/m1OSycz.png)
