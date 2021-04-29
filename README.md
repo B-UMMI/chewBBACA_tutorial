@@ -1,15 +1,16 @@
 
 ## Objective
-The objective of this tutorial is to illustrate the complete workflow of a chewBBACA pipeline for creating a wgMLST and a cgMLST schema for a colection of 714 _Streptococcus agalactiae_ genomes (32 complete genomes and 682 assemblies deposited on the Sequence Read Archive) by providing step-by-step instructions and displaying the obtained outputs.
+The objective of this tutorial is to illustrate the complete workflow of a chewBBACA pipeline for creating a wgMLST and a cgMLST schema for a colection of 714 _Streptococcus agalactiae_ genomes (32 complete genomes and 682 draft genome assemblies deposited on the NCBI databases) by providing step-by-step instructions and displaying the obtained outputs.
 
 All information about NCBI genomes used in this example is on the [.tsv file](https://github.com/B-UMMI/chewBBACA_tutorial/tree/master/genomes/NCBI_genomes_proks.Sagalactiae_allGenomes.2016_08_03.tsv).
  inside the `genomes` folder.
 
 The setup is done by the following steps  
-1. Install chewBBACA and download the training files repository. Check the [installation guide](https://github.com/B-UMMI/chewBBACA/wiki/0.-Setting-up-chewBBACA).
-2. do a `git clone https://github.com/B-UMMI/chewBBACA_tutorial` to download the entire repository in the folder of your choice
-3. `cd chewBBACA_tutorial/` to enter the dir
-4. `unzip genomes/complete_genomes.zip` to extract all the complete genomes files. a directory named complete_genomes will be available at `chewBBACA tutorial/`
+1. Install chewBBACA. Check [Installing chewBBACA](https://github.com/B-UMMI/chewBBACA/wiki/0.-Setting-up-chewBBACA) for instructions on how to install chewBBACA. chewBBACA includes Prodigal training files for several species, including for _Streptococcus agalactiae_. However, if you are not sure about the location of chewBBACA's files after the installation, you can download the training file for _Streptococcus agalactiae_ [here](https://github.com/B-UMMI/chewBBACA/raw/master/CHEWBBACA/prodigal_training_files/Streptococcus_agalactiae.trn).
+2. Clone this repository to the local folder of your choice. To clone, run the following command:
+- `git clone https://github.com/B-UMMI/chewBBACA_tutorial` to download the entire repository in the folder of your choice
+4. `cd chewBBACA_tutorial/` to enter the dir
+5. `unzip genomes/complete_genomes.zip` to extract all the complete genomes files. a directory named complete_genomes will be available at `chewBBACA tutorial/`
 
 The reported times using the 32 complete genomes were calculated for a Dual QuadCore laptop with  intel i7 2.4GHz using 6 cores. Using slower machines or using less number of CPUs can greatly increase the duration of the analyses.
 
