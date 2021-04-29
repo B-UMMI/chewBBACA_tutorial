@@ -11,7 +11,7 @@ The setup is done by the following steps:
     `git clone https://github.com/B-UMMI/chewBBACA_tutorial`
 3. Go to `.../chewBBACA_tutorial/` and run `unzip genomes/complete_genomes.zip` to extract all the complete genomes. A directory named `complete_genomes` will be created in `.../chewBBACA_tutorial/`.
 
-The reported times using the 32 complete genomes were obtained for a DELL XPS13 (10th Generation Intel® Core™ i7-10710U Processor - 12MB Cache, up to 4.7 GHz, using 6 cores). Using a computer with less powerful specifications can greatly increase the duration of the analyses.
+The execution times reported in this tutorial were obtained for a DELL XPS13 (10th Generation Intel® Core™ i7-10710U Processor - 12MB Cache, up to 4.7 GHz, using 6 cores). Using a computer with less powerful specifications can greatly increase the duration of the analyses.
 
 ## Schema creation
 
