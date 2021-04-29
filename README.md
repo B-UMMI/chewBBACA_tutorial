@@ -18,7 +18,9 @@ The reported times using the 32 complete genomes were obtained for a DELL XPS13 
 We will start by creating a wgMLST schema based on **32** _Streptococcus agalactiae_ complete genomes (32 genomes with a level of assembly classified as complete genome or chromossome) available at NCBI.
 The sequences are present in the `.../chewBBACA_tutorial/complete_genomes/` directory. To create the wgMLST schema, run the following command:  
 
-`chewBBACA.py CreateSchema -i .../chewBBACA_tutorial/complete_genomes/ -o .../chewBBACA_tutorial/tutorial_schema --ptf .../chewBBACA_tutorial/Streptococcus_agalactiae.trn --cpu 6`
+```
+chewBBACA.py CreateSchema -i .../chewBBACA_tutorial/complete_genomes/ -o .../chewBBACA_tutorial/tutorial_schema --ptf .../chewBBACA_tutorial/Streptococcus_agalactiae.trn --cpu 6
+```
 
 The schema seed will be available at `.../chewBBACA_tutorial/tutorial_schema/schema_seed`. You should pass the complete path to the Prodigal training file that is included in the cloned repository, `Streptococcus_agalactiae.trn`, to the `--ptf` parameter. We passed the value `6` to the `--cpu` parameter to use 6 CPU cores, but you should pass a value based on the specifications of your machine. In our system, the process took 56 seconds to complete resulting on a wgMLST schema with 3128 loci. At this point the schema is defined as a set of loci each with a single allele.
 
@@ -26,7 +28,9 @@ The schema seed will be available at `.../chewBBACA_tutorial/tutorial_schema/sch
 
 The next step is to perform allele calling with the wgMLST schema created in the previous step for the **32** complete genomes. To do so, run the following command:
 
-`chewBBACA.py AlleleCall -i .../chewBBACA_tutorial/complete_genomes/ -g .../chewBBACA_tutorial/tutorial_schema/schema_seed -o .../chewBBACA_tutorial/results32_wgMLST --cpu 6`
+```
+chewBBACA.py AlleleCall -i .../chewBBACA_tutorial/complete_genomes/ -g .../chewBBACA_tutorial/tutorial_schema/schema_seed -o .../chewBBACA_tutorial/results32_wgMLST --cpu 6
+```
 
 The allele call used the default BSR threshold of 0.6 (more information on the threshold [here](https://github.com/B-UMMI/chewBBACA/wiki/2.-Allele-Calling)) and took approximately 17 minutes to complete (an average of 32 seconds per genome). The expected results were also included in the repository in `.../chewBBACA_tutorial/expected_results/Allele_calling/results32_wgMLST` for reference.
 
@@ -35,7 +39,9 @@ The allele call used the default BSR threshold of 0.6 (more information on the t
 The next step in the analysis is to determine if some of the loci can be considered paralogs, based on the result of the wgMLST allele calling. The _Allele call_ returns a list of Paralogous genes in the `RepeatedLoci.txt` file that can be found on the `.../chewBBACA_tutorial/results32_wgMLST/results_<datestamp>` folder.
 The `.../chewBBACA_tutorial/results32_wgMLST/results_<datestamp>/RepeatedLoci.txt` file contains a set of 20 loci that were identified as possible paralogs. These loci should be removed from the schema due to the potential uncertainty in allele assignment (for a more detailed description see the [Alelle Calling](https://github.com/B-UMMI/chewBBACA/wiki/2.-Allele-Calling) entry on the wiki). To remove the set of 20 paralogous loci from the allele calling results, run the following command:
 
-`chewBBACA.py RemoveGenes -i .../chewBBACA_tutorial/results32_wgMLST/results_<datestamp>/results_alleles.tsv -g .../chewBBACA_tutorial/results32_wgMLST/results_<datestamp>/RepeatedLoci.txt -o .../chewBBACA_tutorial/results32_wgMLST/results_<datestamp>/results_alleles_NoParalogs.tsv`
+```
+chewBBACA.py RemoveGenes -i .../chewBBACA_tutorial/results32_wgMLST/results_<datestamp>/results_alleles.tsv -g .../chewBBACA_tutorial/results32_wgMLST/results_<datestamp>/RepeatedLoci.txt -o .../chewBBACA_tutorial/results32_wgMLST/results_<datestamp>/results_alleles_NoParalogs.tsv
+```
 
 This will remove the columns matching the 20 paralogous loci from the allele calling results and save the allelic profiles into the `results_alleles_NoParalogs.tsv` file (the new file contains allelic profiles with 3108 loci).
 
