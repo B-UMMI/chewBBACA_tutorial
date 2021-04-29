@@ -33,10 +33,11 @@ The allele call used the default BSR threshold of 0.6 (more information on the t
 ## Paralog detection
 
 The next step in the analysis is to determine if some of the loci can be considered paralogs, based on the result of the wgMLST allele calling. The _Allele call_ returns a list of Paralogous genes in the `RepeatedLoci.txt` file that can be found on the `.../chewBBACA_tutorial/results32_wgMLST/results_<datestamp>` folder.
-The `.../chewBBACA_tutorial/results32_wgMLST/results_<datestamp>/RepeatedLoci.txt` file contains a set of 20 loci that were identified as possible paralogs. This loci should be removed from the schema to... . For a more detailed description see the [Alelle Calling](https://github.com/B-UMMI/chewBBACA/wiki/2.-Allele-Calling) entry on the wiki. To remove the set of 20 paralogous loci from the allele calling results, run the following command:
+The `.../chewBBACA_tutorial/results32_wgMLST/results_<datestamp>/RepeatedLoci.txt` file contains a set of 20 loci that were identified as possible paralogs. These loci should be removed from the schema to... (for a more detailed description see the [Alelle Calling](https://github.com/B-UMMI/chewBBACA/wiki/2.-Allele-Calling) entry on the wiki). To remove the set of 20 paralogous loci from the allele calling results, run the following command:
 
-`chewBBACA.py RemoveGenes -i results_alleles.tsv -g RepeatedLoci.txt -o alleleCallMatrix_cg`
+`chewBBACA.py RemoveGenes -i .../chewBBACA_tutorial/results32_wgMLST/results_<datestamp>/results_alleles.tsv -g .../chewBBACA_tutorial/results32_wgMLST/results_<datestamp>/RepeatedLoci.txt -o .../chewBBACA_tutorial/results32_wgMLST/results_<datestamp>/results_alleles_NoParalogs.tsv`
 
+## cgMLST schema determination
 
 A set of **1133** loci were found to be present in all the analyzed complete genomes, while **1265** loci were present in at least 95%.
 
