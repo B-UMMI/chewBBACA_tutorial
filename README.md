@@ -33,20 +33,28 @@ The allele call used the default BSR threshold of 0.6 (more information on the t
 ## Paralog detection
 
 The next step in the analysis is to determine if some of the loci can be considered paralogs, based on the result of the wgMLST allele calling. The _Allele call_ returns a list of Paralogous genes in the `RepeatedLoci.txt` file that can be found on the `.../chewBBACA_tutorial/results32_wgMLST/results_<datestamp>` folder.
-The `.../chewBBACA_tutorial/results32_wgMLST/results_<datestamp>/RepeatedLoci.txt` file contains a set of 20 loci that were identified as possible paralogs. These loci should be removed from the schema to... (for a more detailed description see the [Alelle Calling](https://github.com/B-UMMI/chewBBACA/wiki/2.-Allele-Calling) entry on the wiki). To remove the set of 20 paralogous loci from the allele calling results, run the following command:
+The `.../chewBBACA_tutorial/results32_wgMLST/results_<datestamp>/RepeatedLoci.txt` file contains a set of 20 loci that were identified as possible paralogs. These loci should be removed from the schema due to the potential uncertainty in allele assignment (for a more detailed description see the [Alelle Calling](https://github.com/B-UMMI/chewBBACA/wiki/2.-Allele-Calling) entry on the wiki). To remove the set of 20 paralogous loci from the allele calling results, run the following command:
 
 `chewBBACA.py RemoveGenes -i .../chewBBACA_tutorial/results32_wgMLST/results_<datestamp>/results_alleles.tsv -g .../chewBBACA_tutorial/results32_wgMLST/results_<datestamp>/RepeatedLoci.txt -o .../chewBBACA_tutorial/results32_wgMLST/results_<datestamp>/results_alleles_NoParalogs.tsv`
 
+This will remove the columns matching the 20 paralogous loci from the allele calling results and save the allelic profiles into the `results_alleles_NoParalogs.tsv` file (the new file contains allelic profiles with 3108 loci).
+
 ## cgMLST schema determination
 
-A set of **1133** loci were found to be present in all the analyzed complete genomes, while **1265** loci were present in at least 95%.
+We can now determine the set of loci in the core genome based on the allele calling results. The set of loci in the core genome is determined based on a presence threshold. We can run the TestGenomeQuality module to determine the impact of several thresold values in the number of loci in the core genome.
 
-`chewBBACA.py TestGenomeQuality -i alleleCallMatrix_cg.tsv -n 13 -t 200 -s 5`
+```
+chewBBACA.py TestGenomeQuality -i .../chewBBACA_tutorial/results32_wgMLST/results_<datestamp>/results_alleles_NoParalogs.tsv -n 13 -t 200 -s 5 -o .../chewBBACA_tutorial/results32_wgMLST/results_<datestamp>/genome_quality_32
+```
+
+The process will automatically open a HTML file with a plot 
 
 ![Genome quality testing of complete genomes](https://i.imgur.com/uf3Hygd.png)
 [larger image fig 1](https://i.imgur.com/uf3Hygd.png) or [see interactive plot online](http://im.fm.ul.pt/chewBBACA/GenomeQual/GenomeQualityPlot_complete_genomes.html)
 
-For further analysis only the **1265** loci that we chose to represent the cgMLST schema will be used. The list can be retrieved from the `analysis_cg/Genes_95%.txt` that TestGenomeQuality creates.
+A set of **1136** loci were found to be present in all the analyzed complete genomes, while **1267** loci were present in at least 95%.
+
+For further analysis only the **1267** loci that we chose to represent the cgMLST schema will be used. The list can be retrieved from the `analysis_cg/Genes_95%.txt` that TestGenomeQuality creates.
 There you can find the list of loci present in 95% of the strains per threshold, in this case we will use any threshold from 60 to 195 since the number of loci . You can see the list file with **1265** loci at `analysis_cg/listgenes_core.txt` and for further use you should add for each loci the full path for each locus fasta file.
 
 ## Allele call for 682 _Streptococcus agalactiae_ assemblies
