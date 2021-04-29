@@ -66,17 +66,17 @@ We can run the ExtraCgMLST module to quickly determine the set of loci in the co
 ```
 chewBBACA.py ExtractCgMLST -i .../chewBBACA_tutorial/results32_wgMLST/results_<datestamp>/results_alleles_NoParalogs.tsv -o .../chewBBACA_tutorial/results32_wgMLST/results_<datestamp>/cgMLST_95 --t 0.95
 ```
-The list witht the 1267 loci in the core genome at 95% are in the `.../chewBBACA_tutorial/results32_wgMLST/results_<datestamp>/cgMLST_95/cgMLSTschema.txt` file.
+The list with the 1267 loci in the core genome at 95% is in the `.../chewBBACA_tutorial/results32_wgMLST/results_<datestamp>/cgMLST_95/cgMLSTschema.txt` file.
 
 ## Allele call for 682 _Streptococcus agalactiae_ assemblies
 
-**682 assemblies** of _Streptococcus agalactiae_ available on NCBI were downloaded ( 03-08-2016, downloadable zip file [here](https://drive.google.com/file/d/0Bw6VuoagsdhmaWEtR25fODlJTEk/view?usp=sharing))
-and analyzed with [MLST](https://github.com/tseemann/mlst) in order to exclude possibly mislabeled samples as _Streptococcus agalactiae_.
+**682 assemblies** of _Streptococcus agalactiae_ available on NCBI were downloaded (03-08-2016, downloadable zip file [here](https://drive.google.com/file/d/0Bw6VuoagsdhmaWEtR25fODlJTEk/view?usp=sharing), run `unzip GBS_Aug2016.zip` to extract genome files into a folder named `GBS_Aug2016`) and analyzed with [MLST](https://github.com/tseemann/mlst) in order to exclude possibly mislabeled samples as _Streptococcus agalactiae_. Out of the **682 genomes**, 2 (GCA_000323065.2_ASM32306v2 and GCA_001017915.1_ASM101791v1) were detected as being of a different species/contamination and were removed from the analysis.
 
-Out of the **682 genomes**, 2 (GCA_000323065.2_ASM32306v2 and GCA_001017915.1_ASM101791v1) were detected as being of a different species/contamination and removed from the analysis.
-Allele call was performed on the bona fide  _Streptococcus agalactiae_ **680 genomes** using the **1265 loci** for schema validation. Paralog detection found no paralog loci.
+Allele call was performed on the bona fide _Streptococcus agalactiae_ **680 genomes** using the **1267 loci** that constitute the core genome at 95%. Paralog detection found no paralog loci.
 
-`chewBBACA.py AlleleCall -i .genomes/ -g listgenes_core.txt -o results --cpu 6 --ptf Streptococcus_agalactiae.trn`
+```
+chewBBACA.py AlleleCall -i path/to/GBS_Aug2016/ -g .../chewBBACA_tutorial/results32_wgMLST/results_<datestamp>/cgMLST_95/cgMLSTschema.txt -o .../chewBBACA_tutorial/results680_cgMLST --cpu 6
+```
 
 Run on the same laptop with 6 cpu took approximately 30 mins to complete (an average of 2.6 secs per genome)
 
