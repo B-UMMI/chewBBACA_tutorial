@@ -5,26 +5,26 @@ The objective of this tutorial is to illustrate the complete workflow of a chewB
 All information about NCBI genomes used in this example is on the [.tsv file](https://github.com/B-UMMI/chewBBACA_tutorial/tree/master/genomes/NCBI_genomes_proks.Sagalactiae_allGenomes.2016_08_03.tsv).
  inside the `genomes` folder.
 
-The setup is done by the following steps
-1. Install chewBBACA. Check [Installing chewBBACA](https://github.com/B-UMMI/chewBBACA/wiki/0.-Setting-up-chewBBACA) for instructions on how to install chewBBACA. chewBBACA includes Prodigal training files for several species, including for _Streptococcus agalactiae_. However, if you are not sure about the location of chewBBACA's files after the installation, you can download the training file for _Streptococcus agalactiae_ [here](https://github.com/B-UMMI/chewBBACA/raw/master/CHEWBBACA/prodigal_training_files/Streptococcus_agalactiae.trn).
+The setup is done by the following steps:
+1. Install chewBBACA. Check [Installing chewBBACA](https://github.com/B-UMMI/chewBBACA/wiki/0.-Setting-up-chewBBACA) for instructions on how to install chewBBACA. chewBBACA includes Prodigal training files for several species, including for _Streptococcus agalactiae_. You can check the list of available training files [here](https://github.com/B-UMMI/chewBBACA/raw/master/CHEWBBACA/prodigal_training_files/). We have included the training file for _Streptococcus agalactiae_ in this repository.
 2. Clone this repository to the local folder of your choice. To clone, run the following command:
     `git clone https://github.com/B-UMMI/chewBBACA_tutorial`
-3. Go to `.../chewBBACA_tutorial/` and run `unzip genomes/complete_genomes.zip` to extract all the complete genomes. A directory named `complete_genomes` will be created in `.../chewBBACA tutorial/`.
+3. Go to `.../chewBBACA_tutorial/` and run `unzip genomes/complete_genomes.zip` to extract all the complete genomes. A directory named `complete_genomes` will be created in `.../chewBBACA_tutorial/`.
 
 The reported times using the 32 complete genomes were obtained for a DELL XPS13 (10th Generation Intel® Core™ i7-10710U Processor - 12MB Cache, up to 4.7 GHz, using 6 cores). Using a computer with less powerful specifications can greatly increase the duration of the analyses.
 
 ## Schema creation
 
-The wgMLST schema was created using the **32** _Streptococcus agalactiae_ complete genomes (32 genomes with a level of assembly classified as complete genome or chromossome) available at NCBI.
-The sequences are present in the `complete_genomes/` folder. To create the wgMLST schema, run the following command:  
+We will start by creating a wgMLST schema based on **32** _Streptococcus agalactiae_ complete genomes (32 genomes with a level of assembly classified as complete genome or chromossome) available at NCBI.
+The sequences are present in the `.../chewBBACA_tutorial/complete_genomes/` directory. To create the wgMLST schema, run the following command:  
 
-`chewBBACA.py CreateSchema -i complete_genomes/ --cpu 6 -o schema_seed --ptf Streptococcus_agalactiae.trn`
+`chewBBACA.py CreateSchema -i .../chewBBACA_tutorial/complete_genomes/ -o .../chewBBACA_tutorial/tutorial_schema --ptf .../chewBBACA_tutorial/Streptococcus_agalactiae.trn --cpu 6`
 
-The command uses 6 CPU and outputs the schema to `schema_seed` folder using the `prodigal` training set for _Streptococcus agalactiae_ and took around 16 minutes to complete resulting on a wgMLST schema wiht 3126 loci.
-At this point the schema is defined as a set of loci each with a single allele.
+The schema seed will be available at `.../chewBBACA_tutorial/tutorial_schema/schema_seed`. You should pass the complete path to the Prodigal training file that is included in the cloned repository, `Streptococcus_agalactiae.trn`, to the `--ptf` parameter. We passed the value `6` to the `--cpu` parameter to use 6 CPU cores, but you should pass a value based on the specifications of your machine. In our system, the process took 56 seconds to complete resulting on a wgMLST schema with 3128 loci. At this point the schema is defined as a set of loci each with a single allele.
 
 ## Allele calling
-The next step was to perform allele calling with the created wgMLST schema for the **32** complete genomes.
+
+The next step is to perform allele calling with the wgMLST schema created in the prevous step for the **32** complete genomes.
 
 `chewBBACA.py AlleleCall -i complete_genomes/ -g schema_seed/ -o results_cg --cpu 6 --ptf Streptococcus_agalactiae.trn`
 
