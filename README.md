@@ -53,12 +53,13 @@ We can now determine the set of loci in the core genome based on the allele call
 chewBBACA.py TestGenomeQuality -i .../chewBBACA_tutorial/results32_wgMLST/results_<datestamp>/results_alleles_NoParalogs.tsv -n 13 -t 200 -s 5 -o .../chewBBACA_tutorial/results32_wgMLST/results_<datestamp>/genome_quality_32
 ```
 
-The process will automatically open a HTML file with a plot 
+The process will automatically open a HTML file with the following plot:
 
 ![Genome quality testing of complete genomes](https://i.imgur.com/uf3Hygd.png)
 [larger image fig 1](https://i.imgur.com/uf3Hygd.png) or [see interactive plot online](http://im.fm.ul.pt/chewBBACA/GenomeQual/GenomeQualityPlot_complete_genomes.html)
 
-A set of **1136** loci were found to be present in all the analyzed complete genomes, while **1267** loci were present in at least 95%.
+A set of **1136 loci** were found to be present in all the analyzed complete genomes, while **1267 loci** were present in at least 95%.
+For further analysis we will use the set of loci present in at least 95% of the complete genomes.
 
 For further analysis only the **1267** loci that we chose to represent the cgMLST schema will be used. The list can be retrieved from the `analysis_cg/Genes_95%.txt` that TestGenomeQuality creates.
 There you can find the list of loci present in 95% of the strains per threshold, in this case we will use any threshold from 60 to 195 since the number of loci . You can see the list file with **1265** loci at `analysis_cg/listgenes_core.txt` and for further use you should add for each loci the full path for each locus fasta file.
