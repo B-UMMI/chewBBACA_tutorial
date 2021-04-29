@@ -75,10 +75,10 @@ The list with the 1267 loci in the core genome at 95% is in the `.../chewBBACA_t
 Allele call was performed on the bona fide _Streptococcus agalactiae_ **680 genomes** using the **1267 loci** that constitute the core genome at 95%. Paralog detection found no paralog loci.
 
 ```
-chewBBACA.py AlleleCall -i path/to/GBS_Aug2016/ -g .../chewBBACA_tutorial/results32_wgMLST/results_<datestamp>/cgMLST_95/cgMLSTschema.txt -o .../chewBBACA_tutorial/results680_cgMLST --cpu 6
+chewBBACA.py AlleleCall -i path/to/GBS_Aug2016/ -g .../chewBBACA_tutorial/tutorial_schema/schema_seed --gl .../chewBBACA_tutorial/results32_wgMLST/results_<datestamp>/cgMLST_95/cgMLSTschema.txt -o .../chewBBACA_tutorial/results680_cgMLST --cpu 6
 ```
 
-Run on the same laptop with 6 cpu took approximately 30 mins to complete (an average of 2.6 secs per genome)
+It was run on the same laptop with 6 CPU cores and took approximately 39 minutes to complete (an average of 3.4 secs per genome).
 
 Since our initial 32 genomes allele call was performed with the wgMLST schema we need to remove the loci that constitute the auxiliary genome, in order to be able to compare with the cgMLST allele call we performed for the 680 genomes.  We select the `alleleCallMatrix_cg.tsv` file we previously created (already paralog free but still a wgMLST profile) and we extract only the loci present in 95% of the matrix.
 
