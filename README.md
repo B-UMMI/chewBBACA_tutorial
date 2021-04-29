@@ -9,11 +9,11 @@ The setup is done by the following steps:
 1. Install chewBBACA. Check [Installing chewBBACA](https://github.com/B-UMMI/chewBBACA/wiki/0.-Setting-up-chewBBACA) for instructions on how to install chewBBACA. chewBBACA includes Prodigal training files for several species, including for _Streptococcus agalactiae_. You can check the list of available training files [here](https://github.com/B-UMMI/chewBBACA/raw/master/CHEWBBACA/prodigal_training_files/). We have included the training file for _Streptococcus agalactiae_ in this repository.
 2. Clone this repository to the local folder of your choice. To clone, run the following command:  
     `git clone https://github.com/B-UMMI/chewBBACA_tutorial`
-3. Go to `.../chewBBACA_tutorial/` and run `unzip genomes/complete_genomes.zip` to extract all the complete genomes. A directory named `complete_genomes` will be created in `.../chewBBACA_tutorial/`.
+3. Go to the top-level directory of the cloned repository, `.../chewBBACA_tutorial/`, and run `unzip genomes/complete_genomes.zip` to extract all the complete genomes.
 
 The execution times reported in this tutorial were obtained for a DELL XPS13 (10th Generation Intel® Core™ i7-10710U Processor - 12MB Cache, up to 4.7 GHz, using 6 cores). Using a computer with less powerful specifications can greatly increase the duration of the analyses.  
 
-The commands used in this tutorial assume that the working directory is the topmost level of the cloned repository, `.../chewBBACA_tutorial/`. The commands should be adapted if they are executed from a different working directory.
+The commands used in this tutorial assume that the working directory is the top-level directory of the cloned repository, `.../chewBBACA_tutorial/`. The commands should be modified if they are executed from a different working directory.
 
 ## Schema creation
 
