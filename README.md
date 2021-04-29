@@ -7,7 +7,7 @@ All information about NCBI genomes used in this example is on the [.tsv file](ht
 
 The setup is done by the following steps:
 1. Install chewBBACA. Check [Installing chewBBACA](https://github.com/B-UMMI/chewBBACA/wiki/0.-Setting-up-chewBBACA) for instructions on how to install chewBBACA. chewBBACA includes Prodigal training files for several species, including for _Streptococcus agalactiae_. You can check the list of available training files [here](https://github.com/B-UMMI/chewBBACA/raw/master/CHEWBBACA/prodigal_training_files/). We have included the training file for _Streptococcus agalactiae_ in this repository.
-2. Clone this repository to the local folder of your choice. To clone, run the following command:
+2. Clone this repository to the local folder of your choice. To clone, run the following command:  
     `git clone https://github.com/B-UMMI/chewBBACA_tutorial`
 3. Go to `.../chewBBACA_tutorial/` and run `unzip genomes/complete_genomes.zip` to extract all the complete genomes. A directory named `complete_genomes` will be created in `.../chewBBACA_tutorial/`.
 
