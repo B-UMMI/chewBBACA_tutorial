@@ -37,7 +37,7 @@ The allele call used the default BSR threshold of 0.6 (more information on the t
 ## Paralog detection
 
 The next step in the analysis is to determine if some of the loci can be considered paralogs, based on the result of the wgMLST allele calling. The _Allele call_ returns a list of Paralogous genes in the `RepeatedLoci.txt` file that can be found on the `results32_wgMLST/results_<datestamp>` folder.
-The `results32_wgMLST/results_<datestamp>/RepeatedLoci.txt` file contains a set of 20 loci that were identified as possible paralogs. These loci should be removed from the schema due to the potential uncertainty in allele assignment (for a more detailed description see the [Alelle Calling](https://github.com/B-UMMI/chewBBACA/wiki/2.-Allele-Calling) entry on the wiki). To remove the set of 20 paralogous loci from the allele calling results, run the following command:
+The `RepeatedLoci.txt` file contains a set of 20 loci that were identified as possible paralogs. These loci should be removed from the schema due to the potential uncertainty in allele assignment (for a more detailed description see the [Alelle Calling](https://github.com/B-UMMI/chewBBACA/wiki/2.-Allele-Calling) entry on the wiki). To remove the set of 20 paralogous loci from the allele calling results, run the following command:
 
 ```
 chewBBACA.py RemoveGenes -i results32_wgMLST/results_<datestamp>/results_alleles.tsv -g results32_wgMLST/results_<datestamp>/RepeatedLoci.txt -o results32_wgMLST/results_<datestamp>/results_alleles_NoParalogs.tsv
@@ -67,7 +67,7 @@ We can run the ExtraCgMLST module to quickly determine the set of loci in the co
 chewBBACA.py ExtractCgMLST -i results32_wgMLST/results_<datestamp>/results_alleles_NoParalogs.tsv -o results32_wgMLST/results_<datestamp>/cgMLST_95 --t 0.95
 ```
 
-The list with the 1267 loci in the core genome at 95% is in the `results32_wgMLST/results_<datestamp>/cgMLST_95/cgMLSTschema.txt` file.
+The list with the 1267 loci in the core genome at 95% is in the `results32_wgMLST/results_<datestamp>/cgMLST_95/cgMLSTschema.txt` file. This file can be passed to the `--gl` parameter of the AlleleCall process to perform allele calling only for the set of genes that constitute the core genome.
 
 ## Allele call for 682 _Streptococcus agalactiae_ assemblies
 
@@ -80,6 +80,8 @@ chewBBACA.py AlleleCall -i path/to/GBS_Aug2016/ -g tutorial_schema/schema_seed -
 ```
 
 The process took approximately 39 minutes to complete (an average of 3.4 secs per genome).
+
+## Evaluate genome quality
 
 We can now concatenate the cgMLST results for the 32 complete genomes with the cgMLST results for the 680 genomes to have all the results in a single file.
 To concatenate the allelic profiles of both analyses run the following command:
