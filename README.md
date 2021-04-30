@@ -22,17 +22,17 @@ We will start by creating a wgMLST schema based on **32** _Streptococcus agalact
 chewBBACA.py CreateSchema -i complete_genomes/ -o tutorial_schema --ptf Streptococcus_agalactiae.trn --cpu 6
 ```
 
-The schema seed will be available at `tutorial_schema/schema_seed`. We passed the value `6` to the `--cpu` parameter to use 6 CPU cores, but you should pass a value based on the specifications of your machine. In our system, the process took 56 seconds to complete resulting on a wgMLST schema with 3128 loci. At this point the schema is defined as a set of loci each with a single allele.
+The schema seed will be available at `tutorial_schema/schema_seed`. We passed the value `6` to the `--cpu` parameter to use 6 CPU cores, but you should pass a value based on the specifications of your machine. In our system, the process took 56 seconds to complete resulting on a wgMLST schema with 3128 loci. At this point the schema is defined as a set of loci each with a single representative allele.
 
 ## Allele calling
 
-The next step is to perform allele calling with the wgMLST schema created in the previous step for the **32** complete genomes. To do so, run the following command:
+The next step is to perform allele calling with the wgMLST schema created in the previous step for the **32** complete genomes. The allele call step determines the allelic profiles of the analyzed strains, identifying known and novel alleles in the analyzed genomes. Novel alleles are assigned an allele identifier and added to the schema. To perform allele call, run the following command:
 
 ```
 chewBBACA.py AlleleCall -i complete_genomes/ -g tutorial_schema/schema_seed -o results32_wgMLST --cpu 6
 ```
 
-The allele call used the default BSR threshold of 0.6 (more information on the threshold [here](https://github.com/B-UMMI/chewBBACA/wiki/2.-Allele-Calling)) and took approximately 17 minutes to complete (an average of 32 seconds per genome).
+The allele call used the default BSR threshold of 0.6 (more information on the threshold [here](https://github.com/B-UMMI/chewBBACA/wiki/2.-Allele-Calling)) and took approximately 17 minutes to complete (an average of 32 seconds per genome). The allele call identified 14,720 novel alleles and added those alleles to the schema, increasing the allele number from 3,128 to 17,848.
 
 ## Paralog detection
 
