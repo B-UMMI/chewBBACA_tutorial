@@ -32,7 +32,7 @@ The next step is to perform allele calling with the wgMLST schema created in the
 chewBBACA.py AlleleCall -i complete_genomes/ -g tutorial_schema/schema_seed -o results32_wgMLST --cpu 6
 ```
 
-The allele call used the default BSR threshold of 0.6 (more information on the threshold [here](https://github.com/B-UMMI/chewBBACA/wiki/2.-Allele-Calling)) and took approximately 17 minutes to complete (an average of 32 seconds per genome). The allele call identified 14,720 novel alleles and added those alleles to the schema, increasing the allele number from 3,128 to 17,848.
+The allele call used the default BSR threshold of 0.6 (more information on the threshold [here](https://github.com/B-UMMI/chewBBACA/wiki/2.-Allele-Calling)) and took approximately 17 minutes to complete (an average of 32 seconds per genome). The allele call identified 14,720 novel alleles and added those alleles to the schema, increasing the number of alleles in the schema from 3,128 to 17,848.
 
 ## Paralog detection
 
@@ -47,7 +47,7 @@ This will remove the columns matching the 20 paralogous loci from the allele cal
 
 ## cgMLST schema determination
 
-We can now determine the set of loci in the core genome based on the allele calling results. The set of loci in the core genome is determined based on a threshold of loci presence in the analysed genomes. We can run the TestGenomeQuality module to determine the impact of several thresold values in the number of loci in the core genome.
+We can now determine the set of loci in the core genome based on the allele calling results. The set of loci in the core genome is determined based on a threshold of loci presence in the analysed genomes. We can run the TestGenomeQuality module to determine the impact of several threshold values on the number of loci in the core genome.
 
 ```
 chewBBACA.py TestGenomeQuality -i results32_wgMLST/results_<datestamp>/results_alleles_NoParalogs.tsv -n 13 -t 200 -s 5 -o results32_wgMLST/results_<datestamp>/genome_quality_32
