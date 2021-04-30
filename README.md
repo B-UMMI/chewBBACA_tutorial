@@ -12,7 +12,7 @@ Please start by going through the following steps:
 
 The execution times reported in this tutorial were obtained for a DELL XPS13 (10th Generation Intel® Core™ i7-10710U Processor - 12MB Cache, up to 4.7 GHz, using 6 cores). Using a computer with less powerful specifications can greatly increase the duration of the analyses.  
 
-The commands used in this tutorial assume that the working directory is the top-level directory of the cloned repository, `.../chewBBACA_tutorial/`. The commands should be modified if they are executed from a different working directory.
+The commands used in this tutorial assume that the working directory is the top-level directory of the cloned repository, `.../chewBBACA_tutorial/`. The commands should be modified if they are executed from a different working directory. We have included the expected results for each section in the `expected_results` folder for reference (each subfolder has the name of one of the sections).
 
 ## Schema creation
 
@@ -32,7 +32,7 @@ The next step is to perform allele calling with the wgMLST schema created in the
 chewBBACA.py AlleleCall -i complete_genomes/ -g tutorial_schema/schema_seed -o results32_wgMLST --cpu 6
 ```
 
-The allele call used the default BSR threshold of 0.6 (more information on the threshold [here](https://github.com/B-UMMI/chewBBACA/wiki/2.-Allele-Calling)) and took approximately 17 minutes to complete (an average of 32 seconds per genome). The expected results were also included in the repository in `expected_results/Allele_calling/results32_wgMLST` for reference.
+The allele call used the default BSR threshold of 0.6 (more information on the threshold [here](https://github.com/B-UMMI/chewBBACA/wiki/2.-Allele-Calling)) and took approximately 17 minutes to complete (an average of 32 seconds per genome).
 
 ## Paralog detection
 
