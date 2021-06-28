@@ -107,7 +107,7 @@ The genomes that were removed at each threshold are indicated in the file `analy
 
 The following command creates a directory `analysis_all/cgMLST_25/` and saves the cgMLST schema selected at the chosen threshold to the file `cgMLST.tsv`.
 
-`chewBBACA.py ExtractCgMLST -i cgMLST_all.tsv -o cgMLST_25 -g removedGenomes_25.txt`
+`chewBBACA.py ExtractCgMLST -i cgMLST_all.tsv -o cgMLST_25 --g removedGenomes_25.txt`
 
 ## Minimum Spanning Tree
 
